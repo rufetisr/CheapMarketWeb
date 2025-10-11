@@ -9,7 +9,7 @@ interface Journal {
 
 
 const Journals = () => {
-    const apiUrl = import.meta.env.VITE_LOCAL_URL;
+    const apiUrl = import.meta.env.VITE_API_URL;
     const [journals, setJournals] = useState<Journal[]>([]); // Add type here
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
