@@ -55,6 +55,9 @@ function Navbar() {
                 <Link to={'/products'} className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all'>
                     Products
                 </Link>
+                <Link to={'/journals'} className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all'>
+                    Journals
+                </Link>
                 <Link to={'/contact'} className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all'>
                     Contact
                 </Link>
@@ -85,6 +88,9 @@ function Navbar() {
                     </Link>
                     <Link to={'/products'} onClick={closeMenu} className='w-full text-center p-4 hover:bg-sky-400 hover:text-white transition-all cursor-pointer'>
                         Products
+                    </Link>
+                    <Link to={'/journals'} onClick={closeMenu} className='w-full text-center p-4 hover:bg-sky-400 hover:text-white transition-all cursor-pointer'>
+                        Journals
                     </Link>
                     <Link to={'/contact'} onClick={closeMenu} className=' w-full text-center p-4 hover:bg-sky-400 hover:text-white transition-all cursor-pointer'>
                         Contact

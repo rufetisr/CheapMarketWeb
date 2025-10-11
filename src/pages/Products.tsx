@@ -1,24 +1,33 @@
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import Loader from "../components/Loader";
 
 const Products = () => {
 
   const [products, setProducts] = useState<any[]>([]);
   const [searchInput, setSearchInput] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const apiUrl = import.meta.env.VITE_API_URL
 
   const fetchProducts = async () => {
 
     try {
+      setLoading(true)
       const res = await fetch(`${apiUrl}/scrape?productName=${searchInput}`);
       const data = await res.json();
 
-      console.log(data);
+      // console.log(data);
       setProducts(data);
     }
     catch (error) {
       console.error("Error fetching products:", error);
+      setError('An error occurred');
+    }
+    finally {
+      setLoading(false)
     }
 
   }
@@ -42,8 +51,26 @@ const Products = () => {
     }
   }
 
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return (
+      <div className='text-center px-4 py-8'>
+        <p className='text-red-600 text-xl'>Error: {error}</p>
+        <button
+          onClick={fetchProducts}
+          className='cursor-pointer mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div className="m-auto w-full max-w-3xl px-4 py-8">
+    <div className=" w-full max-w-3xl px-4 py-8">
       <h3>Products</h3>
 
       <div className='relative'>
