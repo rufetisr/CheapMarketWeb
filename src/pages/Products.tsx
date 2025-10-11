@@ -13,14 +13,17 @@ const Products = () => {
   const apiUrl = import.meta.env.VITE_API_URL
 
   const fetchProducts = async () => {
-
     try {
+      // console.log('toast');
+
       setLoading(true)
       const res = await fetch(`${apiUrl}/scrape?productName=${searchInput}`);
       const data = await res.json();
 
       // console.log(data);
       setProducts(data);
+      setSearchInput('')
+
     }
     catch (error) {
       console.error("Error fetching products:", error);
@@ -43,7 +46,7 @@ const Products = () => {
     e.preventDefault();
     if (searchInput.trim() === '') {
 
-      toast.error('Zəhmət olmasa bir məhsul daxil edin!');
+      toast.error('Please enter a product!');
       return;
     }
     else {
@@ -51,9 +54,9 @@ const Products = () => {
     }
   }
 
-  if (loading) {
-    return <Loader />;
-  }
+  // if (loading) {
+  //   return <Loader />;
+  // }
 
   if (error) {
     return (
@@ -70,8 +73,8 @@ const Products = () => {
   }
 
   return (
-    <div className=" w-full max-w-3xl px-4 py-8">
-      <h3>Products</h3>
+    !loading ? (<div className=" w-full max-w-3xl px-4 py-8">
+      <p className='text-2xl mb-6'>Products</p>
 
       <div className='relative'>
         <form onSubmit={searchProduct}>
@@ -81,6 +84,7 @@ const Products = () => {
             onChange={(e) => setSearchInput(e.target.value)}
             className='text-md pl-12 py-3 text-gray-700 bg-gray-200 rounded-xl p-2 focus:outline-none focus:border-2 border-transparent focus:border-blue-500 transition-colors'
             placeholder='Məhsul axtar...'
+            value={searchInput}
             onKeyDown={handleKeyDown}
           />
           <i className='text-gray-500 text-3xl bx  bx-search absolute left-3 top-1/2 -translate-y-1/2'  ></i>
@@ -88,7 +92,6 @@ const Products = () => {
           <button
             className='cursor-pointer active:scale-95 duration-150 text-md bg-blue-500 text-white px-4 py-3 rounded-lg ml-3 hover:bg-blue-600 transition-colors'>Axtar</button>
 
-          <ToastContainer position="top-center" hideProgressBar={true} autoClose={2200} />
         </form>
       </div>
 
@@ -120,16 +123,15 @@ const Products = () => {
                 </div>
               ))
             }
-
           </div>
+
         ))
 
 
       }
+      <ToastContainer position="top-center" hideProgressBar={false} autoClose={2200} />
 
-
-
-    </div>
+    </div>) : <Loader />
   )
 }
 
