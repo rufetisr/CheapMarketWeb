@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react'
 import Loader from '../components/Loader';
+import { useAppContext } from '../context/Context';
 
 
-interface Journal {
-    journalUrl: string;
-    imgUrl: string;
-}
 
 
 const Journals = () => {
     const apiUrl = import.meta.env.VITE_API_URL;
-    const [journals, setJournals] = useState<Journal[]>([]); // Add type here
-    const [loading, setLoading] = useState(true);
+
+    const { journals, setJournals } = useAppContext()
+
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -19,6 +18,10 @@ const Journals = () => {
     }, [])
 
     const fetchJournals = async () => {
+        if (journals.length > 0) {            
+            return
+        }
+        
         try {
             setLoading(true)
             const res = await fetch(`${apiUrl}/scrape-journal`)
@@ -34,7 +37,6 @@ const Journals = () => {
 
         } catch (err) {
             setError('An error occurred');
-            console.error('Error fetching journals:', err);
         } finally {
             setLoading(false);
         }

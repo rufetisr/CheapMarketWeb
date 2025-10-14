@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import marketImg from '../assets/images/markets.png'
+import marketImg from '../assets/images/markets-old.png'
 
 const Home = () => {
     return (

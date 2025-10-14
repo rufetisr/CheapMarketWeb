@@ -14,19 +14,16 @@ const Products = () => {
 
   const fetchProducts = async () => {
     try {
-      // console.log('toast');
 
       setLoading(true)
       const res = await fetch(`${apiUrl}/scrape?productName=${searchInput}`);
       const data = await res.json();
 
-      // console.log(data);
       setProducts(data);
       setSearchInput('')
 
     }
     catch (error) {
-      console.error("Error fetching products:", error);
       setError('An error occurred');
     }
     finally {
@@ -54,9 +51,6 @@ const Products = () => {
     }
   }
 
-  // if (loading) {
-  //   return <Loader />;
-  // }
 
   if (error) {
     return (
