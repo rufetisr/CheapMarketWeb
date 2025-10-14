@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import marketLogo from '../assets/images/markets.png'
+import marketLogo from '../assets/images/markets-old.png'
 import { Link } from 'react-router-dom'
 
 

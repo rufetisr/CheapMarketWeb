@@ -8,7 +8,10 @@ import Contact from './pages/Contact'
 import FindClosestMarket from './pages/FindClosestMarket'
 import Journals from './pages/Journals'
 
+
 function App() {
+
+
 
   return (
     <>
@@ -19,8 +22,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/products' element={<Products />} />
           <Route path='/contact' element={<Contact />} />
-          <Route path='/find-closest-market' element={<FindClosestMarket/>} />
-          <Route path='/journals' element={<Journals/>} />
+          <Route path='/find-closest-market' element={<FindClosestMarket />} />
+          <Route path='/journals' element={<Journals />} />
         </Routes>
 
       </div>
