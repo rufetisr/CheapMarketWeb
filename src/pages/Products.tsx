@@ -2,10 +2,12 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Loader from "../components/Loader";
+import { useAppContext } from "../context/Context";
 
 const Products = () => {
 
-  const [products, setProducts] = useState<any[]>([]);
+  // const [products, setProducts] = useState<any[]>([]);
+  const {products, setProducts} = useAppContext()
   const [searchInput, setSearchInput] = useState<string>('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -67,7 +69,7 @@ const Products = () => {
   }
 
   return (
-    !loading ? (<div className=" w-full max-w-3xl px-4 py-8">
+    !loading ? (<div className=" w-full max-w-3xl ">
       <p className='text-2xl mb-6'>Products</p>
 
       <div className='relative'>

@@ -41,7 +41,7 @@ function Navbar() {
     return (
 
         <header className='flex justify-between items-center py-6 px-8
-      md:px-32 bg-white drop-shadow-md sticky top-0 left-0 right-0 z-50'>
+      md:px-32 bg-white drop-shadow-md top-0 left-0 right-0 z-50 fixed'>
 
             <Link to={'/'}>
                 <img src={marketLogo} alt="logo" className='w-15 hover:scale-105 transition-all' />
