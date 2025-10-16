@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Loader from "../components/Loader";
@@ -6,13 +6,22 @@ import { useAppContext } from "../context/Context";
 
 const Products = () => {
 
-  // const [products, setProducts] = useState<any[]>([]);
-  const {products, setProducts} = useAppContext()
+  const { products, setProducts } = useAppContext()
   const [searchInput, setSearchInput] = useState<string>('');
+  const [filter, setFilter] = useState<string>('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+
   const apiUrl = import.meta.env.VITE_API_URL
+
+  useEffect(() => {
+    
+    const savedProducts = localStorage.getItem("products");
+    if (savedProducts) {
+      setProducts(JSON.parse(savedProducts));
+    }
+  }, [setProducts]);
 
   const fetchProducts = async () => {
     try {
@@ -38,6 +47,7 @@ const Products = () => {
     if (e.key === 'Enter') {
       e.preventDefault();
       searchProduct(e);
+      setFilter('')
     }
   }
 
@@ -50,9 +60,39 @@ const Products = () => {
     }
     else {
       fetchProducts();
+      setFilter('')
     }
   }
 
+  const getFilteredProducts = (filterType: string) => {
+
+    let filtered: any = {};
+
+
+    Object.entries(products).forEach(([marketName, marketProducts]) => {
+      let sorted = [...marketProducts]
+
+      if (filterType == 'lowest') {
+        sorted.sort((a, b) => parseFloat(a.salePrice) - parseFloat(b.salePrice));
+      } else if (filterType === "highest") {
+        sorted.sort((a, b) => parseFloat(b.salePrice) - parseFloat(a.salePrice));
+      } else if (filterType === "discount") {
+        sorted = sorted.filter((p) => p.previousPrice);
+      }
+
+      filtered[marketName] = sorted;
+    })
+
+    setProducts(filtered)
+
+  }
+
+  useEffect(() => {
+
+    if (Object.keys(products).length > 0) {
+      localStorage.setItem("products", JSON.stringify(products));
+    }
+  }, [products]);
 
   if (error) {
     return (
@@ -68,25 +108,47 @@ const Products = () => {
     );
   }
 
+  // const filteredProducts = getFilteredProducts();
+
   return (
-    !loading ? (<div className=" w-full max-w-3xl ">
+    !loading ? (<div className="w-full max-w-3xl ">
       <p className='text-2xl mb-6'>Products</p>
 
       <div className='relative'>
-        <form onSubmit={searchProduct}>
+        <form onSubmit={searchProduct} className="flex flex-wrap items-center gap-3">
+          <div className="relative " >
 
-          <input
-            type="text"
-            onChange={(e) => setSearchInput(e.target.value)}
-            className='text-md pl-12 py-3 text-gray-700 bg-gray-200 rounded-xl p-2 focus:outline-none focus:border-2 border-transparent focus:border-blue-500 transition-colors'
-            placeholder='Məhsul axtar...'
-            value={searchInput}
-            onKeyDown={handleKeyDown}
-          />
-          <i className='text-gray-500 text-3xl bx  bx-search absolute left-3 top-1/2 -translate-y-1/2'  ></i>
+            <input
+              type="text"
+              onChange={(e) => setSearchInput(e.target.value)}
+              className='text-md pl-12 py-3 text-gray-700 bg-gray-200 rounded-xl p-2 focus:outline-none focus:border-2 border-transparent focus:border-blue-500 transition-colors'
+              placeholder='Məhsul axtar...'
+              value={searchInput}
+              onKeyDown={handleKeyDown}
+            />
+            <i className='text-gray-500 text-3xl bx  bx-search absolute left-3 top-1/2 -translate-y-1/2'  ></i>
+          </div>
 
           <button
-            className='cursor-pointer active:scale-95 duration-150 text-md bg-blue-500 text-white px-4 py-3 rounded-lg ml-3 hover:bg-blue-600 transition-colors'>Axtar</button>
+            className='cursor-pointer active:scale-95 duration-150 text-md bg-blue-500 text-white px-4 py-3 rounded-lg ml-3 hover:bg-blue-600 transition-colors'>
+            Axtar
+          </button>
+
+          <select
+          
+            value={filter}
+            onChange={(e) => {
+              setFilter(e.target.value);
+              getFilteredProducts(e.target.value);
+            }}
+
+            className="bg-gray-200 text-ggray-700 py-3 px-3 rounded-lg focus:outline-none">
+            <option value="" disabled >Filter</option>
+            <option value="lowest">Lowest to Highest</option>
+            <option value="highest">Highest to Lowest</option>
+            <option value="discount">Discounts Only</option>
+
+          </select>
 
         </form>
       </div>

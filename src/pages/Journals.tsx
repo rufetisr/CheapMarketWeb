@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Loader from '../components/Loader';
 import { useAppContext } from '../context/Context';
+import { HiOutlineRefresh } from "react-icons/hi";
 
 
 
@@ -14,16 +15,22 @@ const Journals = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        
-        fetchJournals()
+        const saved = localStorage.getItem("journals");
+        const savedTime = localStorage.getItem("journalsTimestamp");
+        const now = Date.now();
+
+        // Check if cache is valid (< 24h old)
+        if (saved && savedTime && now - Number(savedTime) < 24 * 60 * 60 * 1000) {
+            setJournals(JSON.parse(saved));
+        } else {
+            fetchJournals();
+        }
     }, [])
+
+
 
     const fetchJournals = async () => {
 
-        if (journals.length > 0) {            
-            return
-        }        
-        
         try {
             setLoading(true)
             const res = await fetch(`${apiUrl}/scrape-journal`)
@@ -35,12 +42,22 @@ const Journals = () => {
 
             setJournals(data);
 
+            localStorage.setItem("journals", JSON.stringify(data));
+            localStorage.setItem("journalsTimestamp", Date.now().toString());
+
         } catch (err) {
             setError('An error occurred');
         } finally {
             setLoading(false);
         }
     }
+
+
+    const handleRefresh = () => {
+        localStorage.removeItem("journals");
+        localStorage.removeItem("journalsTimestamp");
+        fetchJournals();
+    };
 
 
     if (loading) {
@@ -55,6 +72,8 @@ const Journals = () => {
                     onClick={fetchJournals}
                     className='cursor-pointer mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
                 >
+                    <HiOutlineRefresh />
+
                     Retry
                 </button>
             </div>
@@ -64,6 +83,13 @@ const Journals = () => {
         <div className='text-center '>
             <p className='text-2xl mb-6'>Journals</p>
 
+            <button
+                onClick={handleRefresh}
+                className='ml-auto cursor-pointer flex items-center gap-1.5 mb-6 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 active:scale-95 transition-all'
+            >
+                <HiOutlineRefresh className='text-2xl'/>
+                Refresh Journals
+            </button>
 
             <div className='flex flex-wrap justify-center gap-4'>
                 {
