@@ -14,13 +14,15 @@ const Journals = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        
         fetchJournals()
     }, [])
 
     const fetchJournals = async () => {
+
         if (journals.length > 0) {            
             return
-        }
+        }        
         
         try {
             setLoading(true)
@@ -30,8 +32,6 @@ const Journals = () => {
             }
 
             const data = await res.json()
-
-            console.log(data);
 
             setJournals(data);
 
@@ -49,7 +49,7 @@ const Journals = () => {
 
     if (error) {
         return (
-            <div className='text-center px-4 py-8'>
+            <div className='text-center'>
                 <p className='text-red-600 text-xl'>Error: {error}</p>
                 <button
                     onClick={fetchJournals}
@@ -61,7 +61,7 @@ const Journals = () => {
         );
     }
     return (
-        <div className='text-center px-4 py-8'>
+        <div className='text-center '>
             <p className='text-2xl mb-6'>Journals</p>
 
 
