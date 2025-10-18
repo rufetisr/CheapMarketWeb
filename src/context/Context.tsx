@@ -1,16 +1,18 @@
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 interface Journal {
     journalUrl: string;
     imgUrl: string;
 }
 
-interface Product {
+export interface Product {
+    id: string,
     name: string;
     imgSrc: string;
     salePrice: string;
     previousPrice?: string | null;
 }
+
 interface MarketProducts {
     [marketName: string]: Product[]
 }
@@ -21,15 +23,18 @@ interface AppContextType {
 
     products: MarketProducts,
     setProducts: React.Dispatch<React.SetStateAction<MarketProducts>>
-    //   loading: boolean
-    //   setLoading: React.Dispatch<React.SetStateAction<boolean>>
-    //   user: User | null
-    //   setUser: React.Dispatch<React.SetStateAction<User | null>>
-    //   theme: 'light' | 'dark'
-    //   setTheme: React.Dispatch<React.SetStateAction<'light' | 'dark'>>
+
+    favorites: Product[],
+    setFavorites: React.Dispatch<React.SetStateAction<Product[]>>
+
 }
 
-
+//   loading: boolean
+//   setLoading: React.Dispatch<React.SetStateAction<boolean>>
+//   user: User | null
+//   setUser: React.Dispatch<React.SetStateAction<User | null>>
+//   theme: 'light' | 'dark'
+//   setTheme: React.Dispatch<React.SetStateAction<'light' | 'dark'>>
 
 const AppContext = createContext<AppContextType | undefined>(undefined)
 
@@ -37,11 +42,13 @@ const AppContext = createContext<AppContextType | undefined>(undefined)
 export const AppProvider = ({ children }: { children: any }) => {
     const [journals, setJournals] = useState<Journal[]>([])
     const [products, setProducts] = useState<MarketProducts>({})
+    const [favorites, setFavorites] = useState<Product[]>([]);
 
 
     const data = {
         journals, setJournals,
-        products, setProducts
+        products, setProducts,
+        favorites, setFavorites
     }
 
 

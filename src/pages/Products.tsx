@@ -1,22 +1,41 @@
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaHeart, FaMapMarkerAlt, FaRegHeart, FaRegStar, FaStar } from "react-icons/fa";
 import Loader from "../components/Loader";
-import { useAppContext } from "../context/Context";
+import { useAppContext, type Product } from "../context/Context";
+import { HiOutlineRefresh } from "react-icons/hi";
+import { Link } from "react-router";
 
 const Products = () => {
 
-  const { products, setProducts } = useAppContext()
+  const { products, setProducts, favorites, setFavorites } = useAppContext()
+
   const [searchInput, setSearchInput] = useState<string>('');
   const [filter, setFilter] = useState<string>('');
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
 
-  const apiUrl = import.meta.env.VITE_API_URL
+  // const apiUrl = import.meta.env.VITE_API_URL
+  const apiUrl = import.meta.env.VITE_LOCAL_URL
 
   useEffect(() => {
-    
+    console.log('get fav useefect');
+
+    const saved = localStorage.getItem('favorites');
+    if (saved) setFavorites(JSON.parse(saved));
+  }, [])
+
+  useEffect(() => {
+    console.log('fav change usefect');
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  useEffect(() => {
+    console.log('products came');
+
     const savedProducts = localStorage.getItem("products");
     if (savedProducts) {
       setProducts(JSON.parse(savedProducts));
@@ -64,6 +83,24 @@ const Products = () => {
     }
   }
 
+  const toggleFavorite = (product: Product | any, marketName: string) => {
+    const exists = favorites.some((fav) => fav.id == product.id)
+
+    let updated;
+
+
+    if (exists) {
+      updated = favorites.filter((fav) => fav.id != product.id);
+      setFavorites(updated)
+    }
+    else {
+      updated = [...favorites, {...product, marketName}]
+      setFavorites(updated);
+    }
+    localStorage.setItem('favorites', JSON.stringify(updated));
+
+  }
+
   const getFilteredProducts = (filterType: string) => {
 
     let filtered: any = {};
@@ -100,8 +137,9 @@ const Products = () => {
         <p className='text-red-600 text-xl'>Error: {error}</p>
         <button
           onClick={fetchProducts}
-          className='cursor-pointer mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
+          className='flex items-center gap-1.5 cursor-pointer mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
         >
+          <HiOutlineRefresh />
           Retry
         </button>
       </div>
@@ -111,7 +149,7 @@ const Products = () => {
   // const filteredProducts = getFilteredProducts();
 
   return (
-    !loading ? (<div className="w-full max-w-3xl ">
+    !loading ? (<div className="w-full max-w-3xl m-auto">
       <p className='text-2xl mb-6'>Products</p>
 
       <div className='relative'>
@@ -135,14 +173,13 @@ const Products = () => {
           </button>
 
           <select
-          
             value={filter}
             onChange={(e) => {
               setFilter(e.target.value);
               getFilteredProducts(e.target.value);
             }}
 
-            className="bg-gray-200 text-ggray-700 py-3 px-3 rounded-lg focus:outline-none">
+            className="cursor-pointer bg-gray-200 text-ggray-700 py-3 px-3 rounded-lg focus:outline-none">
             <option value="" disabled >Filter</option>
             <option value="lowest">Lowest to Highest</option>
             <option value="highest">Highest to Lowest</option>
@@ -150,6 +187,12 @@ const Products = () => {
 
           </select>
 
+          <Link to={'/favorites'} title="Favorites">
+            <button className="self-baseline cursor-pointer bg-amber-400 rounded px-2 py-2  text-red-500 hover:scale-120 transition-transform"
+            >
+              <FaStar size={26} />
+            </button>
+          </Link>
         </form>
       </div>
 
@@ -174,10 +217,23 @@ const Products = () => {
                       {marketName}
                     </p>
                   </div>
-                  {
-                    product.previousPrice &&
-                    <p className="text-sm bg-yellow-300 p-1 rounded-sm  ml-auto">Endirim</p>
-                  }
+                  <div className="ml-auto flex flex-col gap-3.5 self-baseline">
+                    <button
+                    title="Add to Favorite"
+                      className="self-baseline ml-auto cursor-pointer text-red-500 hover:scale-120 transition-transform"
+                      onClick={() => toggleFavorite(product, marketName)}
+
+                    >
+                      {
+                        favorites.some(fav => fav.id === product.id) ? <FaStar size={26} /> : <FaRegStar size={26} />
+                      }
+                    </button>
+                    {
+                      product.previousPrice &&
+                      <p className="text-sm bg-yellow-300 p-1 rounded-sm">Endirim</p>
+                    }
+
+                  </div>
                 </div>
               ))
             }
