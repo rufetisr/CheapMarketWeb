@@ -9,8 +9,7 @@ import { HiOutlineRefresh } from "react-icons/hi";
 const Journals = () => {
     const apiUrl = import.meta.env.VITE_API_URL;
 
-    const { journals, setJournals } = useAppContext()
-
+    const { journals, setJournals } = useAppContext()    
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -70,10 +69,9 @@ const Journals = () => {
                 <p className='text-red-600 text-xl'>Error: {error}</p>
                 <button
                     onClick={fetchJournals}
-                    className='cursor-pointer mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
+                    className='flex items-center gap-1.5 cursor-pointer mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
                 >
                     <HiOutlineRefresh />
-
                     Retry
                 </button>
             </div>

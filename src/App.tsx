@@ -7,6 +7,7 @@ import Products from './pages/Products'
 import Contact from './pages/Contact'
 import FindClosestMarket from './pages/FindClosestMarket'
 import Journals from './pages/Journals'
+import Favorites from './pages/Favorites'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path='/contact' element={<Contact />} />
             <Route path='/find-closest-market' element={<FindClosestMarket />} />
             <Route path='/journals' element={<Journals />} />
+            <Route path='/favorites' element={<Favorites />} />
           </Routes>
         </div>
 
