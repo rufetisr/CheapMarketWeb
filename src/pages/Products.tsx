@@ -84,7 +84,7 @@ const Products = () => {
   }
 
   const toggleFavorite = (product: Product | any, marketName: string) => {
-    const exists = favorites.some((fav) => fav.id == product.id)
+    const exists = favorites.some((fav) => fav.id === product.id)
 
     let updated;
 
@@ -97,6 +97,8 @@ const Products = () => {
       updated = [...favorites, {...product, marketName}]
       setFavorites(updated);
     }
+    console.log(updated);
+    
     localStorage.setItem('favorites', JSON.stringify(updated));
 
   }
@@ -225,7 +227,7 @@ const Products = () => {
 
                     >
                       {
-                        favorites.some(fav => fav.id == product.id) ? <FaStar size={26} /> : <FaRegStar size={26} />
+                        favorites.some(fav => fav.id === product.id) ? <FaStar size={26} /> : <FaRegStar size={26} />
                       }
                     </button>
                     {
