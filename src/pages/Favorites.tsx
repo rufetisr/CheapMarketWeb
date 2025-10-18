@@ -5,7 +5,7 @@ import Loader from '../components/Loader';
 
 const Favorites = () => {
 
-    const { products, favorites, setFavorites, setProducts } = useAppContext();
+    const { products, favorites, setFavorites } = useAppContext();
     const [loading, setLoading] = useState(true);
 
     console.log('products', products);
