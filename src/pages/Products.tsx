@@ -18,7 +18,7 @@ const Products = () => {
 
 
   // const apiUrl = import.meta.env.VITE_API_URL
-  const apiUrl = import.meta.env.VITE_LOCAL_URL
+  const apiUrl = import.meta.env.VITE_API_URL
 
   useEffect(() => {
     console.log('get fav useefect');
@@ -225,7 +225,7 @@ const Products = () => {
 
                     >
                       {
-                        favorites.some(fav => fav.id === product.id) ? <FaStar size={26} /> : <FaRegStar size={26} />
+                        favorites.some(fav => fav.id == product.id) ? <FaStar size={26} /> : <FaRegStar size={26} />
                       }
                     </button>
                     {
