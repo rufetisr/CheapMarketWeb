@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { FaHeart, FaMapMarkerAlt, FaRegHeart, FaRegStar, FaStar } from "react-icons/fa";
+import { FaMapMarkerAlt, FaRegStar, FaStar } from "react-icons/fa";
 import Loader from "../components/Loader";
 import { useAppContext, type Product } from "../context/Context";
 import { HiOutlineRefresh } from "react-icons/hi";
 import { Link } from "react-router";
+import { IoIosCloseCircle } from "react-icons/io";
 
 const Products = () => {
 
@@ -16,9 +17,23 @@ const Products = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const [modal, setModal] = useState(false);
+  const [selectedImg, setSelectedImg] = useState<string | null>(null)
+
 
   // const apiUrl = import.meta.env.VITE_API_URL
-  const apiUrl = import.meta.env.VITE_LOCAL_URL
+  const apiUrl = import.meta.env.VITE_API_URL
+
+
+  const handleImageClick = (imgSrc: string) => {
+    setSelectedImg(imgSrc.startsWith("//") ? `https:${imgSrc}` : imgSrc)
+    setModal(true)
+  }
+
+  const closeModal = () => {
+    setModal(false);
+    setSelectedImg(null);
+  };
 
   useEffect(() => {
     console.log('get fav useefect');
@@ -59,7 +74,6 @@ const Products = () => {
     finally {
       setLoading(false)
     }
-
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -84,7 +98,7 @@ const Products = () => {
   }
 
   const toggleFavorite = (product: Product | any, marketName: string) => {
-    const exists = favorites.some((fav) => fav.id == product.id)
+    const exists = favorites.some((fav) => fav.id === product.id)
 
     let updated;
 
@@ -94,9 +108,11 @@ const Products = () => {
       setFavorites(updated)
     }
     else {
-      updated = [...favorites, {...product, marketName}]
+      updated = [...favorites, { ...product, marketName }]
       setFavorites(updated);
     }
+    console.log(updated);
+
     localStorage.setItem('favorites', JSON.stringify(updated));
 
   }
@@ -205,7 +221,11 @@ const Products = () => {
               marketProducts.map((product: any, index: number) => (
                 <div key={index} className="text-sm sm:text-lg md:text-2xl border rounded-lg border-gray-300 p-4 mb-3 flex items-center gap-4">
 
-                  <img className="w-20 h-20 object-contain" src={product.imgSrc.startsWith('//') ? `https:${product.imgSrc}` : product.imgSrc} alt={product.name} />
+                  <img
+                    className="cursor-pointer w-20 h-20 object-contain"
+                    src={product.imgSrc.startsWith('//') ? `https:${product.imgSrc}` : product.imgSrc} alt={product.name}
+                    onClick={() => handleImageClick(product.imgSrc)}
+                  />
                   <div className="flex flex-col">
 
                     <h2 className="text-lg text-gray-800 font-semibold ">{product.name}</h2>
@@ -219,7 +239,7 @@ const Products = () => {
                   </div>
                   <div className="ml-auto flex flex-col gap-3.5 self-baseline">
                     <button
-                    title="Add to Favorite"
+                      title="Add to Favorite"
                       className="self-baseline ml-auto cursor-pointer text-red-500 hover:scale-120 transition-transform"
                       onClick={() => toggleFavorite(product, marketName)}
 
@@ -235,13 +255,38 @@ const Products = () => {
 
                   </div>
                 </div>
+
               ))
             }
           </div>
 
         ))
+      }
 
-
+      {
+        modal && selectedImg && (
+          <div
+            className="fixed inset-0 p-5 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50"
+            onClick={closeModal}
+          >
+            <div
+              className="relative bg-white p-2 rounded-xl shadow-lg"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="cursor-pointer absolute top-2 right-3 text-black text-xl font-bold hover:text-red-600"
+                onClick={closeModal}
+              >
+                <IoIosCloseCircle size={26}/>
+              </button>
+              <img
+                src={selectedImg}
+                alt="Product"
+                className="w-[420px] h-[420px] object-contain rounded-lg"
+              />
+            </div>
+          </div>
+        )
       }
       <ToastContainer position="top-center" hideProgressBar={false} autoClose={2200} />
 
