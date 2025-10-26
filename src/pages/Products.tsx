@@ -36,20 +36,17 @@ const Products = () => {
   };
 
   useEffect(() => {
-    console.log('get fav useefect');
 
     const saved = localStorage.getItem('favorites');
     if (saved) setFavorites(JSON.parse(saved));
   }, [])
 
   useEffect(() => {
-    console.log('fav change usefect');
 
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
   useEffect(() => {
-    console.log('products came');
 
     const savedProducts = localStorage.getItem("products");
     if (savedProducts) {
@@ -111,7 +108,6 @@ const Products = () => {
       updated = [...favorites, { ...product, marketName }]
       setFavorites(updated);
     }
-    console.log(updated);
 
     localStorage.setItem('favorites', JSON.stringify(updated));
 
