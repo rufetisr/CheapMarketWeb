@@ -9,16 +9,14 @@ import { GrLinkPrevious } from 'react-icons/gr';
 
 const Favorites = () => {
 
-    const { products, favorites, setFavorites } = useAppContext();
+    const { favorites, setFavorites } = useAppContext();
     const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
 
-    console.log('products', products);
 
 
     useEffect(() => {
-        console.log('usefect favou');
 
         const stored = localStorage.getItem('favorites');
         if (stored) {
@@ -51,9 +49,9 @@ const Favorites = () => {
 
             <button
                 onClick={() => { navigate(-1) }}
-                className='flex items-center gap-1 mb-4 text-blue-600 hover:underline hover:scale-105 transition-transform cursor-pointer' 
-                >
-                <GrLinkPrevious/> Back
+                className='flex items-center gap-1 mb-4 text-blue-600 hover:underline hover:scale-105 transition-transform cursor-pointer'
+            >
+                <GrLinkPrevious /> Back
             </button>
             <h2 className='text-2xl flex items-center justify-center text-red-500'>
                 My Favorites <FaStar />

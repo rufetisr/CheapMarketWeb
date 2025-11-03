@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { FaMapMarkerAlt, FaRegStar, FaStar } from "react-icons/fa";
+import { FaAngleDoubleUp, FaArrowCircleUp, FaMapMarkerAlt, FaRegStar, FaStar } from "react-icons/fa";
 import Loader from "../components/Loader";
 import { useAppContext, type Product } from "../context/Context";
 import { HiOutlineRefresh } from "react-icons/hi";
-import { Link } from "react-router";
 import { IoIosCloseCircle } from "react-icons/io";
+import { Link } from "react-router";
 
 const Products = () => {
 
@@ -18,12 +18,31 @@ const Products = () => {
   const [error, setError] = useState<string | null>(null);
 
   const [modal, setModal] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+
   const [selectedImg, setSelectedImg] = useState<string | null>(null)
 
 
-  // const apiUrl = import.meta.env.VITE_API_URL
   const apiUrl = import.meta.env.VITE_API_URL
 
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleImageClick = (imgSrc: string) => {
     setSelectedImg(imgSrc.startsWith("//") ? `https:${imgSrc}` : imgSrc)
@@ -273,7 +292,7 @@ const Products = () => {
                 className="cursor-pointer absolute top-2 right-3 text-black text-xl font-bold hover:text-red-600"
                 onClick={closeModal}
               >
-                <IoIosCloseCircle size={26}/>
+                <IoIosCloseCircle size={26} />
               </button>
               <img
                 src={selectedImg}
@@ -286,6 +305,17 @@ const Products = () => {
       }
       <ToastContainer position="top-center" hideProgressBar={false} autoClose={2200} />
 
+      {
+        showScrollTop && (
+          <button
+            onClick={scrollToTop}
+            title="Scroll to Top"
+            className="cursor-pointer fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-transform transform hover:scale-110"
+          >
+            <FaAngleDoubleUp size={20}/>
+
+          </button>)
+      }
     </div>) : <Loader />
   )
 }
