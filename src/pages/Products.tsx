@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { FaAngleDoubleUp, FaArrowCircleUp, FaMapMarkerAlt, FaRegStar, FaStar } from "react-icons/fa";
+import { FaAngleDoubleUp, FaMapMarkerAlt, FaRegStar, FaStar } from "react-icons/fa";
 import Loader from "../components/Loader";
 import { useAppContext, type Product } from "../context/Context";
 import { HiOutlineRefresh } from "react-icons/hi";
