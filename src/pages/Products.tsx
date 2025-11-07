@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { FaAngleDoubleUp, FaMapMarkerAlt, FaRegStar, FaStar } from "react-icons/fa";
 import Loader from "../components/Loader";
@@ -12,7 +12,12 @@ const Products = () => {
   const { products, setProducts, favorites, setFavorites } = useAppContext()
 
   const [searchInput, setSearchInput] = useState<string>('');
+
   const [filter, setFilter] = useState<string>('');
+  const [selectedMarkets, setSelectedMarkets] = useState<string[]>([]);
+
+  const dropdownRef = useRef<HTMLDetailsElement | null>(null);
+
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -26,6 +31,15 @@ const Products = () => {
 
   const apiUrl = import.meta.env.VITE_API_URL
 
+  const toggleMarketSelection = (marketName: string) => {
+    setSelectedMarkets((prev) => {
+      if (prev.includes(marketName)) {
+        return prev.filter((m) => m !== marketName);
+      } else {
+        return [...prev, marketName];
+      }
+    });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,6 +72,22 @@ const Products = () => {
 
     const saved = localStorage.getItem('favorites');
     if (saved) setFavorites(JSON.parse(saved));
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        dropdownRef.current.removeAttribute("open"); // closes <details>
+
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, [])
 
   useEffect(() => {
@@ -177,7 +207,6 @@ const Products = () => {
     );
   }
 
-  // const filteredProducts = getFilteredProducts();
 
   return (
     !loading ? (<div className="w-full max-w-3xl m-auto">
@@ -211,12 +240,59 @@ const Products = () => {
             }}
 
             className="cursor-pointer bg-gray-200 text-ggray-700 py-3 px-3 rounded-lg focus:outline-none">
-            <option value="" disabled >Filter</option>
-            <option value="lowest">Lowest to Highest</option>
-            <option value="highest">Highest to Lowest</option>
-            <option value="discount">Discounts Only</option>
+
+            <optgroup label="Filter by Price">
+              {/* <option value="" label="Filter" >Filter</option> */}
+              <option value="lowest">Lowest to Highest</option>
+              <option value="highest">Highest to Lowest</option>
+              <option value="discount">Discounts Only</option>
+            </optgroup>
 
           </select>
+
+          <div className="relative">
+            <details ref={dropdownRef} className="bg-gray-200 rounded-lg px-3 py-3 cursor-pointer">
+
+              <summary className="font-semibold text-gray-700"
+>
+                Filter by Markets
+              </summary>
+
+              <div className="absolute bg-white border border-gray-300 rounded-lg mt-2 p-3 w-48 z-40 shadow-md">
+                {Object.keys(products).length === 0 && (
+                  <p className="text-gray-500 text-sm">No markets yet</p>
+                )}
+                {Object.keys(products).map((marketName) => (
+                  <label key={marketName} className="flex items-center gap-2 py-1 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={selectedMarkets.includes(marketName)}
+                      onChange={() => toggleMarketSelection(marketName)}
+                    />
+                    <span className="text-gray-700">{marketName}</span>
+                  </label>
+                ))}
+                {Object.keys(products).length > 1 && (
+                  <button
+                    type="button"
+                    className="text-sm text-blue-600 mt-2 hover:underline"
+                    onClick={() => {
+                      if (selectedMarkets.length === Object.keys(products).length) {
+                        setSelectedMarkets([]);
+                      } else {
+                        setSelectedMarkets(Object.keys(products));
+                      }
+                    }}
+                  >
+                    {selectedMarkets.length === Object.keys(products).length
+                      ? "Clear All"
+                      : "Select All"}
+                  </button>
+                )}
+              </div>
+
+            </details>
+          </div>
 
           <Link to={'/favorites'} title="Favorites">
             <button className="self-baseline cursor-pointer bg-amber-400 rounded px-2 py-2  text-red-500 hover:scale-120 transition-transform"
@@ -229,7 +305,7 @@ const Products = () => {
 
 
       {
-        Object.entries(products).map(([marketName, marketProducts]) => (
+        Object.entries(products).filter(([marketName]) => selectedMarkets.length === 0 || selectedMarkets.includes(marketName)).map(([marketName, marketProducts]) => (
           <div className="mt-8" key={marketName}>
 
             {
@@ -312,7 +388,7 @@ const Products = () => {
             title="Scroll to Top"
             className="cursor-pointer fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-transform transform hover:scale-110"
           >
-            <FaAngleDoubleUp size={20}/>
+            <FaAngleDoubleUp size={20} />
 
           </button>)
       }
