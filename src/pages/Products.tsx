@@ -241,12 +241,12 @@ const Products = () => {
 
             className="cursor-pointer bg-gray-200 text-ggray-700 py-3 px-3 rounded-lg focus:outline-none">
 
-            <optgroup label="Filter by Price">
-              {/* <option value="" label="Filter" >Filter</option> */}
+            {/* <optgroup label="Filter by Price"> */}
+              <option value="" label="Filter" >Filter</option>
               <option value="lowest">Lowest to Highest</option>
               <option value="highest">Highest to Lowest</option>
               <option value="discount">Discounts Only</option>
-            </optgroup>
+            {/* </optgroup> */}
 
           </select>
 
