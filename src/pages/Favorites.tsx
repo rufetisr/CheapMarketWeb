@@ -79,7 +79,7 @@ const Favorites = () => {
                         <div key={i} className="text-sm sm:text-lg md:text-2xl border rounded-lg border-gray-300 p-4 mb-3 flex items-center gap-4">
 
                             <img
-                                className="w-20 h-20 object-contain"
+                                className="w-20 h-20 object-contain cursor-pointer"
                                 src={product.imgSrc.startsWith('//') ? `https:${product.imgSrc}` : product.imgSrc}
                                 alt={product.name}
                                 onClick={() => handleImageClick(product.imgSrc)} />
