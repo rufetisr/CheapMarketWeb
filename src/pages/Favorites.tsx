@@ -6,14 +6,27 @@ import Loader from '../components/Loader';
 
 import { FaMapMarkerAlt, FaRegStar, FaStar } from "react-icons/fa";
 import { GrLinkPrevious } from 'react-icons/gr';
+import { IoIosCloseCircle } from 'react-icons/io';
 
 const Favorites = () => {
 
     const { favorites, setFavorites } = useAppContext();
     const [loading, setLoading] = useState(true);
 
+    const [modal, setModal] = useState(false);
+    const [selectedImg, setSelectedImg] = useState<string | null>(null)
+
     const navigate = useNavigate();
 
+    const handleImageClick = (imgSrc: string) => {
+        setSelectedImg(imgSrc.startsWith("//") ? `https:${imgSrc}` : imgSrc)
+        setModal(true)
+    }
+
+    const closeModal = () => {
+        setModal(false);
+        setSelectedImg(null);
+    };
 
 
     useEffect(() => {
@@ -65,7 +78,12 @@ const Favorites = () => {
 
                         <div key={i} className="text-sm sm:text-lg md:text-2xl border rounded-lg border-gray-300 p-4 mb-3 flex items-center gap-4">
 
-                            <img className="w-20 h-20 object-contain" src={product.imgSrc.startsWith('//') ? `https:${product.imgSrc}` : product.imgSrc} alt={product.name} />
+                            <img
+                                className="w-20 h-20 object-contain"
+                                src={product.imgSrc.startsWith('//') ? `https:${product.imgSrc}` : product.imgSrc}
+                                alt={product.name}
+                                onClick={() => handleImageClick(product.imgSrc)} />
+
                             <div className="flex flex-col">
 
                                 <h2 className="text-lg text-gray-800 font-semibold ">{product.name}</h2>
@@ -96,6 +114,31 @@ const Favorites = () => {
                         </div>
                     ))}
 
+                    {
+                        modal && selectedImg && (
+                            <div
+                                className="fixed inset-0 p-5 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50"
+                                onClick={closeModal}
+                            >
+                                <div
+                                    className="relative bg-white p-2 rounded-xl shadow-lg"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <button
+                                        className="cursor-pointer absolute top-2 right-3 text-black text-xl font-bold hover:text-red-600"
+                                        onClick={closeModal}
+                                    >
+                                        <IoIosCloseCircle size={26} />
+                                    </button>
+                                    <img
+                                        src={selectedImg}
+                                        alt="Product"
+                                        className="w-[420px] h-[420px] object-contain rounded-lg"
+                                    />
+                                </div>
+                            </div>
+                        )
+                    }
 
                 </div>
             }
