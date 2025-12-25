@@ -1,5 +1,5 @@
 
-import { Route, Routes } from 'react-router'
+import { Route, Routes, useLocation } from 'react-router'
 import './App.css'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -8,10 +8,14 @@ import Contact from './pages/Contact'
 import FindClosestMarket from './pages/FindClosestMarket'
 import Journals from './pages/Journals'
 import Favorites from './pages/Favorites'
+import NutriFab from './components/NutriFab'
+import Nutrition from './pages/Nutrition'
 
 
 function App() {
+  const location = useLocation()
 
+  const hiddenRoutes = ['/', '/nutrition-analyzer', '/contact', "/find-closest-market"]
 
 
   return (
@@ -27,9 +31,14 @@ function App() {
             <Route path='/find-closest-market' element={<FindClosestMarket />} />
             <Route path='/journals' element={<Journals />} />
             <Route path='/favorites' element={<Favorites />} />
+            <Route path='/nutrition-analyzer' element={<Nutrition />} />
+
           </Routes>
         </div>
 
+        {
+        !hiddenRoutes.includes(location.pathname) &&  <NutriFab />
+        }
       </div>
     </>
 

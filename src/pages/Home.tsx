@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import marketImg from '../assets/images/markets-old.png'
+import { FiArrowRight } from 'react-icons/fi'
 
 const Home = () => {
     return (
@@ -20,9 +21,12 @@ const Home = () => {
 
             </div>
             <Link to={'/products'} >
-                <button className='text-2xl cursor-pointer mt-4 px-7 py-4 bg-green-600 text-white rounded-2xl hover:bg-green-700'
-                >
-                    Başla
+                <button className="cursor-pointer group relative flex items-center gap-1.5 overflow-hidden rounded-2xl bg-gradient-to-r from-green-500 to-green-600 px-10 py-4 text-2xl font-semibold text-white shadow-lg transition-all hover:from-green-600 hover:to-green-700 hover:shadow-green-200 active:scale-95">
+                    <span>Başla</span>
+                    <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-3" />
+
+                    {/* Subtle shine effect on hover */}
+                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
                 </button>
             </Link>
         </div>
