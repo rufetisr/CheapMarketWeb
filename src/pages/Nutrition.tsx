@@ -171,7 +171,7 @@ const Nutrition = () => {
                 </div>
                 <div className="flex items-center gap-1">
                     <span className="px-3 py-1 text-white font-bold rounded-md bg-orange-500">D</span>
-                    <span>Least healthy</span>
+                    <span>Unhealthy</span>
                 </div>
                 <div className="flex items-center gap-1">
                     <span className="px-3 py-1 text-white font-bold rounded-md bg-red-600">E</span>
