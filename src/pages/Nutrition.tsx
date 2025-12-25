@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { MdImageSearch } from "react-icons/md";
 import { toast, ToastContainer } from 'react-toastify';
 import Loader from '../components/Loader';
