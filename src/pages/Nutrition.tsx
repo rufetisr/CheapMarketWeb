@@ -18,7 +18,7 @@ const Nutrition = () => {
 
     const [lastImgName, setLastImgName] = useState<string | null>(null);
 
-    const ocrApi = import.meta.env.VITE_OCR_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     function getImageName(file: File): string {
         return file.name + "_" + file.size;
@@ -52,7 +52,7 @@ const Nutrition = () => {
             const formData = new FormData();
             formData.append("file", image);
 
-            const ocrRes = await fetch(`${ocrApi}/ocr`, {
+            const ocrRes = await fetch(`${apiUrl}/proxy/ocr`, {
                 method: "POST",
                 body: formData,
             });
@@ -82,7 +82,7 @@ const Nutrition = () => {
             try {
 
                 // 2. analysis request
-                const analyzeRes = await fetch(`${ocrApi}/analyze`, {
+                const analyzeRes = await fetch(`${apiUrl}/proxy/analyze`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ text: ocrTextValue }),
@@ -111,7 +111,7 @@ const Nutrition = () => {
     //     setLoading(true);
 
     //     try {
-    //         const res = await fetch(`${ocrApi}/analyze`, {
+    //         const res = await fetch(`${apiUrl}/analyze`, {
     //             method: "POST",
     //             headers: { "Content-Type": "application/json" },
     //             body: JSON.stringify({ text: ocrText }),

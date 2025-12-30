@@ -107,12 +107,11 @@ const Products = () => {
     try {
 
       setLoading(true)
-      const res = await fetch(`${apiUrl}/scrape?productName=${searchInput}`);
+      const res = await fetch(`${apiUrl}/proxy/scrape?productName=${searchInput}`);
       const data = await res.json();
 
       setProducts(data);
       setSearchInput('')
-
     }
     catch (error) {
       setError('An error occurred');
@@ -314,7 +313,8 @@ const Products = () => {
 
                   <img
                     className="cursor-pointer w-20 h-20 object-contain"
-                    src={product.imgSrc.startsWith('//') ? `https:${product.imgSrc}` : product.imgSrc} alt={product.name}
+                    src={product.imgSrc ?
+                      (product.imgSrc.startsWith('//') ? `https:${product.imgSrc}` : product.imgSrc) : null} alt={product.name}
                     onClick={() => handleImageClick(product.imgSrc)}
                   />
                   <div className="flex flex-col">
