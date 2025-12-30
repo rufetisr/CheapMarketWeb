@@ -1,5 +1,5 @@
 # 🛒 CheapMarket
-> The smartest way to compare prices, analyze nutrition with AI, and track market trends in one place.
+> The easiest way to compare prices, revising discount journals and analyze food nutrition with AI in one place.
 
 [![Live Demo](https://img.shields.io/badge/Demo-Live%20Now-brightgreen?style=for-the-badge&logo=render)](https://cheapmarketweb.onrender.com/)
 [![Gemini AI](https://img.shields.io/badge/AI-Gemini%20-blue?style=for-the-badge&logo=google-gemini)](https://ai.google.dev/)
