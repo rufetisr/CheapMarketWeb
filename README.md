@@ -58,7 +58,7 @@ This project utilizes a modern full-stack architecture:
 ## 🛡️ Note on Source Code
 The source code for **CheapMarket** is currently held in a **private repository**.
 
-However, you are welcome to explore the live application at **[cheapmarketweb.onrender.com](https://cheapmarketweb.onrender.com/)**. For discussions or collaboration inquiries regarding the project, please reach out via the contact info below.
+You are welcome to explore the live application at **[cheapmarketweb.onrender.com](https://cheapmarketweb.onrender.com/)**. For discussions or collaboration inquiries regarding the project, please reach out via the contact info below.
 
 ---
 
