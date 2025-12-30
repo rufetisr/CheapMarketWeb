@@ -63,7 +63,7 @@ You are welcome to explore the live application at **[cheapmarketweb.onrender.co
 ---
 
 ## 👤 Author
-**Your Name**
+**Rufat Isgandarov**
 - **GitHub:** [@rufetisr](https://github.com/rufetisr)
 - **LinkedIn:** [rufet-isgander.linkedin.com](https://www.linkedin.com/in/rufet-isgander/)
 - **Portfolio:** [myportfolio.com](https://portfolio-70u8.onrender.com/)
