@@ -32,7 +32,7 @@ const Journals = () => {
 
         try {
             setLoading(true)
-            const res = await fetch(`${apiUrl}/scrape-journal`)
+            const res = await fetch(`${apiUrl}/proxy/scrape-journal`)
             if (!res.ok) {
                 throw new Error('Failed to fetch journals');
             }
