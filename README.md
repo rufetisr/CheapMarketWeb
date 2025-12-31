@@ -5,7 +5,7 @@
 [![Gemini AI](https://img.shields.io/badge/AI-Gemini%20-blue?style=for-the-badge&logo=google-gemini)](https://ai.google.dev/)
 [![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/Backend-Node.js-339933?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
-[![License](https://img.shields.io/badge/License-Private-red?style=for-the-badge)](https://github.com/)
+[![License](https://img.shields.io/badge/License-Private-red?style=for-the-badge)](https://github.com/rufetisr/CheapMarketWeb?tab=License-1-ov-file)
 
 ---
 

@@ -10,6 +10,7 @@ import Journals from './pages/Journals'
 import Favorites from './pages/Favorites'
 import NutriFab from './components/NutriFab'
 import Nutrition from './pages/Nutrition'
+import Footer from './components/Footer'
 
 
 function App() {
@@ -39,6 +40,8 @@ function App() {
         {
         !hiddenRoutes.includes(location.pathname) &&  <NutriFab />
         }
+        
+        <Footer/>
       </div>
     </>
 

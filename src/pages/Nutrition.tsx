@@ -24,7 +24,6 @@ const Nutrition = () => {
         return file.name + "_" + file.size;
     }
 
-
     const handleFullAnalysis = async () => {
         if (!image) return toast.info("Zəhmət olmasa şəkil seçin!");
         console.log(image);
@@ -40,14 +39,11 @@ const Nutrition = () => {
         setOcrText("");
         setAnnotatedImage("");
 
-
         setLoadingOCR(true);
 
         let ocrTextValue = "";
 
-
         try {
-
             // 1. ocr request
             const formData = new FormData();
             formData.append("file", image);
@@ -105,29 +101,6 @@ const Nutrition = () => {
         setLastImgName(currentImgName)
     };
 
-    // const handleAnalyze = async () => {
-    //     if (!ocrText.trim()) return toast.info("Mətn tapılmadı!");
-
-    //     setLoading(true);
-
-    //     try {
-    //         const res = await fetch(`${apiUrl}/analyze`, {
-    //             method: "POST",
-    //             headers: { "Content-Type": "application/json" },
-    //             body: JSON.stringify({ text: ocrText }),
-    //         });
-
-    //         const data = await res.json();
-
-
-    //         setAnalysis(data);
-    //     } catch (err) {
-    //         toast.error("AI analizində xəta baş verdi");
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-
     // ---------- BADGE COLORS ----------
     const nutriColors: any = {
         "A": "bg-green-600",
@@ -144,12 +117,6 @@ const Nutrition = () => {
         D: "Less Healthy",
         E: "Unhealthy",
     };
-
-    // const healthColor = (score: number) => {
-    //     if (score >= 80) return "bg-green-600";
-    //     if (score >= 50) return "bg-yellow-400";
-    //     return "bg-red-600";
-    // };
 
     return (
         <div className="flex flex-col items-center gap-2 mb-4">
