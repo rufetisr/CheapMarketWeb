@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Contact = () => {
   const emailAddress = "cheapmarket.az@gmail.com"; // Replace with your actual email
