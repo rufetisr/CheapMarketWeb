@@ -193,19 +193,19 @@ const Footer = () => {
                             <section>
                                 <h4 className="font-semibold text-gray-800">2. No Automated Access (Scraping)</h4>
                                 <p>
-                                    Automated data collection, "scraping," "crawling," or the use of spiders/bots to extract pricing data or nutritional analysis from this website is <strong>strictly prohibited</strong>.
+                                    Automated data collection, "scraping," "crawling," or the use of spiders/bots to extract data from this website is <strong>strictly prohibited</strong>.
                                 </p>
                             </section>
                             <section>
                                 <h4 className="font-semibold text-gray-800">3. Restriction on Reproduction</h4>
                                 <p>
-                                    Users may not reproduce, clone, or reverse-engineer the proprietary price-aggregation algorithms or the  AI integration logic for commercial or competitive use.
+                                    Users may not reproduce, clone, or reverse-engineer the project for commercial or competitive use.
                                 </p>
                             </section>
                             <section>
                                 <h4 className="font-semibold text-gray-800">4. Disclaimer of Accuracy</h4>
                                 <p>
-                                    Data is provided "as is." While we strive for accuracy, CheapMarket does not warrant the real-time accuracy of third-party prices or the medical validity of AI-generated nutritional scores. Use at your own risk.
+                                    Data is provided "as is." While we strive for accuracy, CheapMarket does not warrant the real-time accuracy of third-party prices or the medical validity of AI-generated nutritional scores. Please use the information responsibly.
                                 </p>
                             </section>
                         </div>
