@@ -1,0 +1,25 @@
+
+const DemoVideo = () => {
+  return (
+    <div className="my-12 flex flex-col items-center">
+      <h2 className="text-2xl mb-4 text-gray-800">See CheapMarket in Action</h2>
+      <div className="w-full max-w-2xl rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-white">
+        <video
+          className="w-full h-auto max-h-[420px]"
+          controls   
+          autoPlay
+          muted       
+          poster="/demo-thumbnail.png" // Optional: replace with your thumbnail image
+        >
+          <source src="/demo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <p className="text-gray-500 text-sm mt-3">
+        Watch this quick demo to learn how to use website!
+      </p>
+    </div>
+  );
+};
+
+export default DemoVideo;

@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 import marketImg from '../assets/images/markets-old.png'
 import { FiArrowRight } from 'react-icons/fi'
+import DemoVideo from '../components/DemoVideo'
 
 const Home = () => {
     return (
@@ -29,6 +30,8 @@ const Home = () => {
                     <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
                 </button>
             </Link>
+
+            <DemoVideo/>
         </div>
     )
 }
