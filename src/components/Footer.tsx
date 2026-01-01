@@ -31,7 +31,7 @@ const Footer = () => {
                             The easiest way to compare prices, revise discount journals, and analyze food nutrition with AI.
                         </p>
                         <p className="text-gray-400 text-xs mt-4">
-                            © {new Date().getFullYear()} CheapMarket. All rights reserved.
+                            © 2025 - {new Date().getFullYear()} CheapMarket. All rights reserved.
                         </p>
                     </div>
                     {/* Navigation */}
