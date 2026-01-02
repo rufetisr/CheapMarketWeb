@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import marketLogo from '../assets/images/markets-old.png'
+// import marketLogo from '../assets/images/markets-old.png'
+import mylogo from '../assets/images/logo.png'
 import { Link } from 'react-router-dom'
 
 
@@ -40,11 +41,11 @@ function Navbar() {
 
     return (
 
-        <header className='flex justify-between items-center py-6 px-8
+        <header className='flex justify-between items-center py-1 px-8
       md:px-32 bg-white drop-shadow-md top-0 left-0 right-0 z-50 fixed'>
 
             <Link to={'/'}>
-                <img src={marketLogo} alt="logo" className='w-15 hover:scale-105 transition-all' />
+                <img src={mylogo} alt="logo" className='w-25 h-auto hover:scale-115 transition-all' />
             </Link>
 
             <div className='hidden xl:flex items-center gap-12 font-semibold

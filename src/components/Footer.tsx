@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import logo from '../assets/images/markets-old.png'
+// import logo from '../assets/images/markets-old.png'
+import logo from '../assets/images/logo.png'
 
 
 const Footer = () => {
@@ -23,7 +24,7 @@ const Footer = () => {
                     <div>
                         <div className="flex items-center gap-2 mb-2">
                             <Link to="/" className="block">
-                                <img src={logo} alt="CheapMarket Logo" className="w-10 h-10 rounded cursor-pointer" />
+                                <img src={logo} alt="CheapMarket Logo" className="w-20 h-20 rounded cursor-pointer" />
                             </Link>
                             <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-purple-500">CheapMarket</h2>
                         </div>
