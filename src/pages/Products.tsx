@@ -294,9 +294,12 @@ const Products = () => {
           </div>
 
           <Link to={'/favorites'} title="Favorites">
-            <button className="self-baseline cursor-pointer bg-amber-400 rounded px-2 py-2  text-red-500 hover:scale-120 transition-transform"
+            <button className="relative self-baseline cursor-pointer bg-amber-400 rounded px-2 py-2  text-red-500 hover:scale-120 transition-transform"
             >
               <FaStar size={26} />
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full min-w-[20px] h-[20px] flex items-center justify-center border-2 border-white">
+                {favorites.length}
+              </span>
             </button>
           </Link>
         </form>
