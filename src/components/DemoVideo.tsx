@@ -3,9 +3,9 @@ const DemoVideo = () => {
   return (
     <div className="my-12 flex flex-col items-center">
       <h2 className="text-2xl mb-4 text-gray-800">See CheapMarket in Action</h2>
-      <div className="w-full max-w-2xl rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-white">
+      <div className="w-full max-w-4xl rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-white">
         <video
-          className="w-full h-auto max-h-[420px]"
+          className="w-full h-auto max-h-[600px]"
           controls   
           autoPlay
           muted       
