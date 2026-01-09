@@ -60,6 +60,11 @@ const Footer = () => {
                                 </Link>
                             </li>
                             <li>
+                                <Link to="/my-wallet" className="text-gray-600 hover:text-blue-600 transition">
+                                    My Bonus Cards
+                                </Link>
+                            </li>
+                            <li>
                                 <Link to="/find-closest-market" className="text-gray-600 hover:text-blue-600 transition">
                                     Closest Market
                                 </Link>

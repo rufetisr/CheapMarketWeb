@@ -6,9 +6,10 @@ const DemoVideo = () => {
       <div className="w-full max-w-4xl rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-white">
         <video
           className="w-full h-auto max-h-[600px]"
-          controls   
+          // controls   
           autoPlay
-          muted       
+          muted
+          // playsInline       
           poster="/demo-thumbnail.png" // Optional: replace with your thumbnail image
         >
           <source src="/demo.mp4" type="video/mp4" />

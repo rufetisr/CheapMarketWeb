@@ -11,12 +11,16 @@ import Favorites from './pages/Favorites'
 import NutriFab from './components/NutriFab'
 import Nutrition from './pages/Nutrition'
 import Footer from './components/Footer'
+import Wallet from './pages/Wallet'
+import AddBonusCard from './pages/AddBonusCard'
+import { CardDetails } from './pages/CardDetails'
+import ScrollToTop from './components/ScrollToTop'
 
 
 function App() {
   const location = useLocation()
 
-  const hiddenRoutes = ['/', '/nutrition-analyzer', '/contact', "/find-closest-market"]
+  const showInTheRoutes = ['/products']
 
 
   return (
@@ -24,6 +28,8 @@ function App() {
       <div className='w-full block h-full absolute'>
 
         <Navbar />
+        <ScrollToTop />
+        
         <div className='mt-[110px] px-4 py-8'>
           <Routes>
             <Route path='/' element={<Home />} />
@@ -34,14 +40,20 @@ function App() {
             <Route path='/favorites' element={<Favorites />} />
             <Route path='/nutrition-analyzer' element={<Nutrition />} />
 
+            <Route path='/my-wallet' element={<Wallet />} />
+            <Route path='/add-card' element={<AddBonusCard />} />
+            {/* Dynamic route for the specific card */}
+            <Route path="/card/:id" element={<CardDetails />} />
+
+            <Route path="*" element={<div className="p-10 text-center text-red-500">Page Not Found</div>} />
           </Routes>
         </div>
 
         {
-        !hiddenRoutes.includes(location.pathname) &&  <NutriFab />
+          showInTheRoutes.includes(location.pathname) && <NutriFab />
         }
-        
-        <Footer/>
+
+        <Footer />
       </div>
     </>
 
