@@ -3,6 +3,7 @@ import BarcodeScanner from '../components/BarcodeScanner';
 import { toast, ToastContainer } from 'react-toastify';
 import { db } from '../db';
 import { useNavigate } from 'react-router';
+import { BiBarcodeReader } from 'react-icons/bi';
 
 const AddBonusCard = () => {
     const [name, setName] = useState('');
@@ -50,9 +51,9 @@ const AddBonusCard = () => {
                         />
                         <button
                             onClick={() => setIsScanning(!isScanning)}
-                            className="cursor-pointer bg-blue-600 text-white p-4 rounded-xl active:scale-95 transition"
+                            className="cursor-pointer bg-gray-200 text-2xl p-4 rounded-xl active:scale-94 transition"
                         >
-                            📸
+                            <BiBarcodeReader />
                         </button>
                     </div>
                 </div>
