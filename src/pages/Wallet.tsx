@@ -2,6 +2,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../db'
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiPlus, FiCreditCard } from 'react-icons/fi';
+import { formatBarcode } from '../utils/formatBarcode';
 
 const Wallet = () => {
     const cards = useLiveQuery(() => db.bonusCards.toArray());
@@ -58,7 +59,7 @@ const Wallet = () => {
                                     {card.name}
                                 </h3>
                                 <p className="text-gray-400 font-mono text-xs mt-1 tracking-wider uppercase">
-                                    {card.barcode}
+                                    {formatBarcode(card.barcode)}
                                 </p>
                             </div>
 

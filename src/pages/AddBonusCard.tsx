@@ -4,6 +4,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import { db } from '../db';
 import { useNavigate } from 'react-router';
 import { BiBarcodeReader } from 'react-icons/bi';
+import {formatBarcode, normalizeBarcode} from '../utils/formatBarcode'
+
 
 const AddBonusCard = () => {
     const [name, setName] = useState('');
@@ -46,8 +48,8 @@ const AddBonusCard = () => {
                         <input
                             className="flex-1 p-4 rounded-xl border border-gray-200 outline-none"
                             placeholder="Barcode Number"
-                            value={barcode}
-                            onChange={(e) => setBarcode(e.target.value)}
+                            value={formatBarcode(barcode)}
+                            onChange={(e) => setBarcode(normalizeBarcode(e.target.value))}
                         />
                         <button
                             onClick={() => setIsScanning(!isScanning)}
@@ -62,7 +64,7 @@ const AddBonusCard = () => {
                 {isScanning && (
                     <div className="rounded-2xl overflow-hidden border-2 border-blue-600">
                         <BarcodeScanner onScan={(text) => {
-                            setBarcode(text);
+                            setBarcode(normalizeBarcode(text));
                             setIsScanning(false);
                         }} />
                     </div>

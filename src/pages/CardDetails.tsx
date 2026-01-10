@@ -4,6 +4,7 @@ import { db } from '../db';
 import Barcode from 'react-barcode';
 import { useState } from 'react';
 import { FiZoomIn, FiZoomOut, FiTrash2, FiArrowLeft, FiMaximize2, FiX, FiCreditCard } from 'react-icons/fi';
+import { formatBarcode } from '../utils/formatBarcode';
 
 export const CardDetails = () => {
   const { id } = useParams();
@@ -32,6 +33,7 @@ export const CardDetails = () => {
             <Barcode
               value={card.barcode}
               width={barcodeWidth}
+              // format='
               height={120} // Slightly taller for vertical mode
               displayValue={true}
               fontSize={14}
@@ -87,7 +89,7 @@ export const CardDetails = () => {
 
               <div className="z-10">
                 <h2 className="text-2xl font-black uppercase tracking-tight truncate">{card.name}</h2>
-                <p className="text-blue-100 font-mono tracking-[0.3em] text-sm mt-1">{card.barcode}</p>
+                <p className="text-blue-100 font-mono tracking-[0.3em] text-sm mt-1">{formatBarcode(card.barcode)}</p>
               </div>
             </div>
           )}
@@ -95,7 +97,7 @@ export const CardDetails = () => {
 
         <div className="text-center mb-6">
           <h2 className="text-2xl font-black text-gray-800 uppercase tracking-tight">{card.name}</h2>
-          <p className="text-gray-500 font-mono tracking-widest text-sm">{card.barcode}</p>
+          <p className="text-gray-500 font-mono tracking-widest text-sm">{formatBarcode(card.barcode)}</p>
         </div>
 
         {/* Clickable Barcode Area */}
