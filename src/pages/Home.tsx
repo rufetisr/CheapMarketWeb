@@ -4,6 +4,7 @@ import marketImg from '../assets/images/markets-old.png'
 import { FiArrowRight, FiCreditCard } from 'react-icons/fi'
 import DemoVideo from '../components/DemoVideo'
 import { motion } from 'framer-motion'
+import InstallPWAButton from "../components/InstallPWA";
 
 const Home = () => {
 
@@ -16,9 +17,8 @@ const Home = () => {
 
     return (
         <main className="py-16 px-4 md:px-12 overflow-hidden">
+            <InstallPWAButton />
             <section className="flex flex-col md:flex-row items-center justify-between gap-8">
-
-
                 <motion.header
                     className="flex-1"
                     initial="hidden"
@@ -73,7 +73,7 @@ const Home = () => {
             <motion.section
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.4}}// Trigger once when 60% is visible
+                viewport={{ once: true, amount: 0.4 }}// Trigger once when 60% is visible
                 transition={{ duration: 0.8 }}
                 variants={fadeIn}
                 className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 flex flex-col md:flex-row items-center gap-10"
