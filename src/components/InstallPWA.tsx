@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const InstallPWA = () => {
     const [installPrompt, setInstallPrompt] = useState<any>(null);
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         const handler = (e: any) => {
