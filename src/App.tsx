@@ -45,7 +45,7 @@ function App() {
             {/* Dynamic route for the specific card */}
             <Route path="/card/:id" element={<CardDetails />} />
 
-            <Route path="*" element={<div className="p-10 text-center text-red-500">Page Not Found</div>} />
+            <Route path="*" element={<div className="p-10 text-center text-red-500">Page Not Found!</div>} />
           </Routes>
         </div>
 
