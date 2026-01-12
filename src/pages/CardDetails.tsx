@@ -3,8 +3,9 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../db';
 import Barcode from 'react-barcode';
 import { useState } from 'react';
-import { FiZoomIn, FiZoomOut, FiTrash2, FiArrowLeft, FiMaximize2, FiX, FiCreditCard } from 'react-icons/fi';
+import { FiZoomIn, FiZoomOut, FiTrash2, FiArrowLeft, FiMaximize2, FiX, FiCreditCard, FiEdit2 } from 'react-icons/fi';
 import { formatBarcode } from '../utils/formatBarcode';
+import ConfirmModal from '../components/ConfirmModal';
 
 export const CardDetails = () => {
   const { id } = useParams();
@@ -12,12 +13,32 @@ export const CardDetails = () => {
   const [barcodeWidth, setBarcodeWidth] = useState(2);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
+  // Modal State
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   const card = useLiveQuery(() => db.bonusCards.get(Number(id)), [id]);
 
   if (!card) return <div className="p-10 text-center text-gray-500">Loading card...</div>;
 
+  const handleDelete = async () => {
+    if (card?.id) {
+      await db.bonusCards.delete(card.id);
+      navigate('/my-wallet');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white pb-5">
+      <ConfirmModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={handleDelete}
+        title="Kartı silmək?"
+        message={`"${card.name}" kartını pulqabınızdan silmək istədiyinizə əminsiniz?`}
+        confirmText="Bəli, sil"
+        cancelText="Xeyr, qalsın"
+      />
+
       {/* 1. FULL SCREEN VERTICAL OVERLAY */}
       {isFullScreen && (
         <div
@@ -52,17 +73,20 @@ export const CardDetails = () => {
         </button>
         <h1 className="font-bold text-lg flex-1 ml-2 truncate">{card.name}</h1>
 
-        <button
-          onClick={async () => {
-            if (confirm("Delete this card?")) {
-              await db.bonusCards.delete(card.id!);
-              navigate('/my-wallet');
-            }
-          }}
-          className="p-2 text-red-500 cursor-pointer hover:bg-red-50 rounded-full transition active:scale-90"
-        >
-          <FiTrash2 size={22} />
-        </button>
+        <div className="flex items-center gap-1">
+          <button
+            onClick={() => navigate(`/card/${card.id}/edit`)}
+            className="p-2 text-blue-600 cursor-pointer hover:bg-blue-50 rounded-full transition active:scale-90"
+          >
+            <FiEdit2 size={20} />
+          </button>
+          <button
+            onClick={() => setIsDeleteModalOpen(true)}
+            className="p-2 text-red-500 cursor-pointer hover:bg-red-50 rounded-full transition active:scale-90"
+          >
+            <FiTrash2 size={22} />
+          </button>
+        </div>
       </header>
 
       <main className="p-6 flex flex-col items-center max-w-md mx-auto">
@@ -129,7 +153,7 @@ export const CardDetails = () => {
             </button>
             <span className="text-xs font-bold text-gray-400 w-16 text-center">Size: {barcodeWidth.toFixed(1)}</span>
             <button
-              onClick={(e) => { e.stopPropagation(); setBarcodeWidth(prev => Math.min(2.4, prev + 0.2)) }}
+              onClick={(e) => { e.stopPropagation(); setBarcodeWidth(prev => Math.min(2.8, prev + 0.2)) }}
               className="p-3 bg-white rounded-xl shadow-sm text-gray-700 cursor-pointer hover:text-green-500 active:scale-90 transition"
             >
               <FiZoomIn size={20} />

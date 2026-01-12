@@ -48,6 +48,8 @@ const AddBonusCard = () => {
                         <input
                             className="flex-1 p-4 rounded-xl border border-gray-200 outline-none"
                             placeholder="Barcode Number"
+                            type='text'
+                            inputMode='numeric'
                             value={formatBarcode(barcode)}
                             onChange={(e) => setBarcode(normalizeBarcode(e.target.value))}
                         />
