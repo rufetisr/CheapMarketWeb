@@ -99,11 +99,11 @@ const Home = () => {
                             <span className="bg-green-100 text-green-600 p-1 rounded-full text-xs">✓</span>
                             Kartın şəklini çəkib saxla
                         </div>
-                        {/* <div className="flex items-center gap-2">
-                            <span className="bg-green-100 text-green-600 p-1 rounded-full text-xs">✓</span>
-                            Oflayn rejimdə işləyir
-                        </div>
                         <div className="flex items-center gap-2">
+                            <span className="bg-green-100 text-green-600 p-1 rounded-full text-xs">✓</span>
+                            Tətbiqi quraşdırın və bonus kartlarınıza oflayn rejimdə daxil olun
+                        </div>
+                        {/* <div className="flex items-center gap-2">
                             <span className="bg-green-100 text-green-600 p-1 rounded-full text-xs">✓</span>
                             Məlumatlar yalnız cihazda qalır
                         </div> */}
