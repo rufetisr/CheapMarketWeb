@@ -19,6 +19,7 @@ import EditBonusCard from './pages/EditBonusCard'
 import ScrollToTop from './components/ScrollToTop'
 import { useScrollDirection } from './hooks/useScrollDirection'
 import FabToggle from './components/FabToggle'
+import AdSidebar from './components/AdSidebar'
 
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
   const showNutriFabRoutes = ['/products']
   const showWalletFabRoutes = ['/products', '/favorites', '/journals', '/find-closest-market']
   const showFabToggleRoutes = [...new Set([...showNutriFabRoutes, ...showWalletFabRoutes])]
+  
+  // Routes that should show sidebar with ads
+  const showSidebarRoutes = ['/products', '/journals', '/favorites']
 
   // Determine bottom offset for WalletFab based on whether NutriFab is also visible
   const walletFabBottomOffset = showNutriFabRoutes.includes(location.pathname) 
@@ -42,24 +46,49 @@ function App() {
         <Navbar />
         <ScrollToTop />
         
-        <div className='mt-[110px] px-4 py-8'>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/products' element={<Products />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/find-closest-market' element={<FindClosestMarket />} />
-            <Route path='/journals' element={<Journals />} />
-            <Route path='/favorites' element={<Favorites />} />
-            <Route path='/nutrition-analyzer' element={<Nutrition />} />
+        <div className={`mt-[110px] px-4 py-8 ${showSidebarRoutes.includes(location.pathname) ? 'max-w-7xl mx-auto' : ''}`}>
+          {showSidebarRoutes.includes(location.pathname) ? (
+            <div className="flex flex-row items-start">
+              <div className="flex-1 min-w-0">
+                <Routes>
+                  <Route path='/' element={<Home />} />
+                  <Route path='/products' element={<Products />} />
+                  <Route path='/contact' element={<Contact />} />
+                  <Route path='/find-closest-market' element={<FindClosestMarket />} />
+                  <Route path='/journals' element={<Journals />} />
+                  <Route path='/favorites' element={<Favorites />} />
+                  <Route path='/nutrition-analyzer' element={<Nutrition />} />
 
-            <Route path='/my-wallet' element={<Wallet />} />
-            <Route path='/add-card' element={<AddBonusCard />} />
-            {/* Dynamic route for the specific card */}
-            <Route path="/card/:id" element={<CardDetails />} />
-            <Route path="/card/:id/edit" element={<EditBonusCard />} />
+                  <Route path='/my-wallet' element={<Wallet />} />
+                  <Route path='/add-card' element={<AddBonusCard />} />
+                  {/* Dynamic route for the specific card */}
+                  <Route path="/card/:id" element={<CardDetails />} />
+                  <Route path="/card/:id/edit" element={<EditBonusCard />} />
 
-            <Route path="*" element={<div className="p-10 text-center text-red-500">Page Not Found!</div>} />
-          </Routes>
+                  <Route path="*" element={<div className="p-10 text-center text-red-500">Page Not Found!</div>} />
+                </Routes>
+              </div>
+              <AdSidebar adSlot="YOUR_SIDEBAR_SLOT_ID" />
+            </div>
+          ) : (
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/products' element={<Products />} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='/find-closest-market' element={<FindClosestMarket />} />
+              <Route path='/journals' element={<Journals />} />
+              <Route path='/favorites' element={<Favorites />} />
+              <Route path='/nutrition-analyzer' element={<Nutrition />} />
+
+              <Route path='/my-wallet' element={<Wallet />} />
+              <Route path='/add-card' element={<AddBonusCard />} />
+              {/* Dynamic route for the specific card */}
+              <Route path="/card/:id" element={<CardDetails />} />
+              <Route path="/card/:id/edit" element={<EditBonusCard />} />
+
+              <Route path="*" element={<div className="p-10 text-center text-red-500">Page Not Found!</div>} />
+            </Routes>
+          )}
         </div>
 
         {showNutriFabRoutes.includes(location.pathname) && <NutriFab visible={isFabVisible} />}

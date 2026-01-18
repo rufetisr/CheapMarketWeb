@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 // import logo from '../assets/images/markets-old.png'
 import logo from '../assets/images/logo.png'
+import AdSense from "./AdSense";
 
 
 const Footer = () => {
@@ -123,6 +124,21 @@ const Footer = () => {
                         privacy policy
                     </span>
                     .
+                </div>
+
+                {/* Footer Ad Banner */}
+                <div className="max-w-5xl mx-auto mt-8 mb-4 flex justify-center">
+                    <AdSense
+                        adSlot="YOUR_FOOTER_SLOT_ID"
+                        adFormat="horizontal"
+                        style={{
+                            display: "block",
+                            minHeight: "90px",
+                            width: "100%",
+                            maxWidth: "728px",
+                        }}
+                        className="text-center"
+                    />
                 </div>
             </footer>
 
