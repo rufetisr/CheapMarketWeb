@@ -21,7 +21,7 @@ export default function AdSense({
   className = "",
 }: AdSenseProps) {
   const location = useLocation();
-  const adRef = useRef<HTMLDivElement>(null);
+  const adRef = useRef<HTMLModElement>(null);
   const publisherId = import.meta.env.VITE_ADSENSE_PUBLISHER_ID;
 
   // Load AdSense script dynamically if not already loaded
@@ -33,7 +33,7 @@ export default function AdSense({
     const scriptSrc = existingScript?.getAttribute("src");
 
     // If script exists but has placeholder, update it
-    if (scriptSrc && scriptSrc.includes("PLACEHOLDER") && publisherId) {
+    if (existingScript && scriptSrc?.includes("PLACEHOLDER") && publisherId) {
       const newSrc = scriptSrc.replace("ca-pub-PLACEHOLDER", publisherId);
       existingScript.setAttribute("src", newSrc);
     }
