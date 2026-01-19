@@ -88,7 +88,8 @@
     "balance": "Balans",
     "addCard": "Kart Əlavə Et",
     "myCards": "Mənim Kartlarım",
-    "noCards": "Hələ kart yoxdur"
+    "noCards": "Hələ kart yoxdur",
+    "emptyStateDesc": "Bonus kartlarınızı rəqəmsal olaraq saxlayın. Başlamaq üçün aşağıda + düyməsinə toxunun!"
   },
   "footer": {
     "description": "Qiymətləri müqayisə etməyin, endirim jurnallarını nəzərdən keçirməyin və süni intellekt ilə qida qidalanmasını analiz etməyin ən asan yolu.",
@@ -110,7 +111,8 @@
     "selected": "Seçildi:",
     "save": "CÜZDANA YADDA SAXLA",
     "fillWarning": "Lütfən adı və barkodu doldurun."
-  },  "editCard": {
+  },
+  "editCard": {
     "title": "Kartı Redaktə Et",
     "cardNamePlaceholder": "Kartın Adı (məs. Umico)",
     "barcodePlaceholder": "Barkod Nömrəsi",
@@ -119,7 +121,8 @@
     "existingPhoto": "Mövcud şəkil saxlanacaq (əvəz etmək üçün toxunun)",
     "save": "DƏYİŞİKLİKLƏRİ YADDA SAXLA",
     "fillWarning": "Lütfən adı və barkodu doldurun."
-  },  "cardDetails": {
+  },
+  "cardDetails": {
     "deleteTitle": "Kartı silmək?",
     "deleteMessage": "Bu kartı cüzdanınızdan silmək istədiyinizə əminsiniz?",
     "deleteConfirm": "Bəli, sil",

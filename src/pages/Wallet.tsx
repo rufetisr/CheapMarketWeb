@@ -24,7 +24,7 @@ const Wallet = () => {
                     </div>
                     <h2 className="text-xl font-bold text-gray-800 mb-2">{t('wallet.noCards')}</h2>
                     <p className="text-gray-500 mb-10 max-w-[260px] leading-relaxed">
-                        {t('home.walletDesc')} <span className='text-blue-700 text-2xl'>+</span> {t('common.loading')}
+                        {t('wallet.emptyStateDesc')}
                     </p>
                     
                     {/* Visual cue pointing towards the button */}

@@ -88,7 +88,8 @@
     "balance": "Balance",
     "addCard": "Add Card",
     "myCards": "My Cards",
-    "noCards": "No cards yet"
+    "noCards": "No cards yet",
+    "emptyStateDesc": "Store your bonus cards digitally. Tap the + button below to get started!"
   },
   "footer": {
     "description": "The easiest way to compare prices, revise discount journals, and analyze food nutrition with AI.",
