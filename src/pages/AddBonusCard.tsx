@@ -5,6 +5,7 @@ import { db } from '../db';
 import { useNavigate } from 'react-router';
 import { BiBarcodeReader } from 'react-icons/bi';
 import {formatBarcode, normalizeBarcode} from '../utils/formatBarcode'
+import { useTranslation } from 'react-i18next'
 
 
 const AddBonusCard = () => {
@@ -13,10 +14,11 @@ const AddBonusCard = () => {
     const [isScanning, setIsScanning] = useState(false);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const navigate = useNavigate()
+    const { t } = useTranslation()
 
     const handleSave = async () => {
         if (!name || !barcode) {
-            toast.warn('Please fill in the name and barcode. ')
+            toast.warn(t('addCard.fillWarning'))
             return
         }
 
@@ -33,13 +35,13 @@ const AddBonusCard = () => {
     return (
         <div className="min-h-screen bg-gray-50 p-6 flex flex-col items-center">
             <div className="w-full max-w-md space-y-6">
-                <h1 className="text-2xl font-bold text-blue-600">Add New Card</h1>
+                <h1 className="text-2xl font-bold text-blue-600">{t('addCard.title')}</h1>
 
                 {/* Manual Input */}
                 <div className="space-y-4">
                     <input
                         className="w-full p-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 outline-none"
-                        placeholder="Card Name (e.g. Umico)"
+                        placeholder={t('addCard.cardNamePlaceholder')}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -47,7 +49,7 @@ const AddBonusCard = () => {
                     <div className="flex gap-2">
                         <input
                             className="flex-1 p-4 rounded-xl border border-gray-200 outline-none"
-                            placeholder="Barcode Number"
+                            placeholder={t('addCard.barcodePlaceholder')}
                             type='text'
                             inputMode='numeric'
                             value={formatBarcode(barcode)}
@@ -81,7 +83,7 @@ const AddBonusCard = () => {
                         onChange={(e) => setImageFile(e.target.files?.[0] || null)}
                     />
                     <p className="text-gray-500">
-                        {imageFile ? `Selected: ${imageFile.name}` : "Upload Card Photo (Optional)"}
+                        {imageFile ? `${t('addCard.selected')} ${imageFile.name}` : t('addCard.photoPlaceholder')}
                     </p>
                 </div>
 
@@ -89,7 +91,7 @@ const AddBonusCard = () => {
                     onClick={handleSave}
                     className="cursor-pointer w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition"
                 >
-                    SAVE TO WALLET
+                    {t('addCard.save')}
                 </button>
             </div>
             <ToastContainer position="top-center" hideProgressBar={false} autoClose={2200} />

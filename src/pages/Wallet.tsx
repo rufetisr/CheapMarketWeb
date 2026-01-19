@@ -3,15 +3,17 @@ import { db } from '../db'
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiPlus, FiCreditCard } from 'react-icons/fi';
 import { formatBarcode } from '../utils/formatBarcode';
+import { useTranslation } from 'react-i18next'
 
 const Wallet = () => {
     const cards = useLiveQuery(() => db.bonusCards.toArray());
+    const { t } = useTranslation()
 
     return (
         <div className="min-h-screen bg-gray-50 p-4 pb-24 font-sans">
             {/* Header */}
             <h1 className="text-2xl font-bold text-blue-600 mb-6 text-center tracking-tight">
-                My Bonus Cards
+                {t('wallet.title')}
             </h1>
 
             {/* Empty State Logic */}
@@ -20,9 +22,9 @@ const Wallet = () => {
                     <div className="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mb-6 text-blue-500">
                         <FiCreditCard size={48} />
                     </div>
-                    <h2 className="text-xl font-bold text-gray-800 mb-2">Your wallet is empty</h2>
+                    <h2 className="text-xl font-bold text-gray-800 mb-2">{t('wallet.noCards')}</h2>
                     <p className="text-gray-500 mb-10 max-w-[260px] leading-relaxed">
-                        Store your bonus cards digitally. Tap the <span className='text-blue-700 text-2xl'>+</span> button below to get started!
+                        {t('home.walletDesc')} <span className='text-blue-700 text-2xl'>+</span> {t('common.loading')}
                     </p>
                     
                     {/* Visual cue pointing towards the button */}

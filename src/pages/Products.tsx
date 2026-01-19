@@ -6,10 +6,12 @@ import { useAppContext, type Product } from "../context/Context";
 import { HiOutlineRefresh } from "react-icons/hi";
 import { IoIosCloseCircle } from "react-icons/io";
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next"
 
 const Products = () => {
 
   const { products, setProducts, favorites, setFavorites } = useAppContext()
+  const { t } = useTranslation()
 
   const [searchInput, setSearchInput] = useState<string>('');
 
@@ -133,7 +135,7 @@ const Products = () => {
     e.preventDefault();
     if (searchInput.trim() === '') {
 
-      toast.error('Please enter a product!');
+      toast.error(t('products.enterProduct'));
       return;
     }
     else {
@@ -194,13 +196,13 @@ const Products = () => {
   if (error) {
     return (
       <div className='text-center px-4 py-8'>
-        <p className='text-red-600 text-xl'>Error: {error}</p>
+        <p className='text-red-600 text-xl'>{t('products.error')}: {error}</p>
         <button
           onClick={fetchProducts}
           className='flex items-center gap-1.5 cursor-pointer mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
         >
           <HiOutlineRefresh />
-          Retry
+          {t('products.retry')}
         </button>
       </div>
     );
@@ -209,7 +211,7 @@ const Products = () => {
 
   return (
     !loading ? (<div className="w-full max-w-3xl m-auto">
-      <p className='text-2xl mb-6'>Products</p>
+      <p className='text-2xl mb-6'>{t('products.title')}</p>
 
       <div className='relative'>
         <form onSubmit={searchProduct} className="flex flex-wrap items-center gap-3">
@@ -219,7 +221,7 @@ const Products = () => {
               type="text"
               onChange={(e) => setSearchInput(e.target.value)}
               className='text-md pl-12 py-3 text-gray-700 bg-gray-200 rounded-xl p-2 focus:outline-none focus:border-2 border-transparent focus:border-blue-500 transition-colors'
-              placeholder='Məhsul axtar...'
+              placeholder={t('products.searchPlaceholder')}
               value={searchInput}
               onKeyDown={handleKeyDown}
             />
@@ -228,7 +230,7 @@ const Products = () => {
 
           <button
             className='cursor-pointer active:scale-95 duration-150 text-md bg-blue-500 text-white px-4 py-3 rounded-lg ml-3 hover:bg-blue-600 transition-colors'>
-            Axtar
+            {t('products.searchButton')}
           </button>
 
           <select
@@ -241,10 +243,10 @@ const Products = () => {
             className="cursor-pointer bg-gray-200 text-ggray-700 py-3 px-3 rounded-lg focus:outline-none">
 
             {/* <optgroup label="Filter by Price"> */}
-            <option value="" label="Filter" >Filter</option>
-            <option value="lowest">Lowest to Highest</option>
-            <option value="highest">Highest to Lowest</option>
-            <option value="discount">Discounts Only</option>
+            <option value="" label={t('products.filter')} >{t('products.filter')}</option>
+            <option value="lowest">{t('products.lowestToHighest')}</option>
+            <option value="highest">{t('products.highestToLowest')}</option>
+            <option value="discount">{t('products.discountsOnly')}</option>
             {/* </optgroup> */}
 
           </select>
@@ -254,12 +256,12 @@ const Products = () => {
 
               <summary className="font-semibold text-gray-700"
               >
-                Filter by Markets
+                {t('products.filterByMarkets')}
               </summary>
 
               <div className="absolute bg-white border border-gray-300 rounded-lg mt-2 p-3 w-48 z-40 shadow-md">
                 {Object.keys(products).length === 0 && (
-                  <p className="text-gray-500 text-sm">No markets yet</p>
+                  <p className="text-gray-500 text-sm">{t('products.noMarkets')}</p>
                 )}
                 {Object.keys(products).map((marketName) => (
                   <label key={marketName} className="flex items-center gap-2 py-1 cursor-pointer">
@@ -284,8 +286,8 @@ const Products = () => {
                     }}
                   >
                     {selectedMarkets.length === Object.keys(products).length
-                      ? "Clear All"
-                      : "Select All"}
+                      ? t('products.clearAll')
+                      : t('products.selectAll')}
                   </button>
                 )}
               </div>
@@ -344,7 +346,7 @@ const Products = () => {
                     </button>
                     {
                       product.previousPrice &&
-                      <p className="text-sm bg-yellow-300 p-1 rounded-sm">Endirim</p>
+                      <p className="text-sm bg-yellow-300 p-1 rounded-sm">{t('products.discount')}</p>
                     }
 
                   </div>

@@ -1,0 +1,140 @@
+{
+  "nav": {
+    "home": "Əsas Səhifə",
+    "products": "Məhsullar",
+    "contact": "Əlaqə",
+    "findMarket": "Market Tap",
+    "journals": "Jurnallar",
+    "favorites": "Sevimlilər",
+    "nutrition": "Qidalanma",
+    "wallet": "Cüzdan",
+    "language": "Dil"
+  },
+  "home": {
+    "title": "Ucuz Marketə xoş gəlmisiniz!",
+    "subtitle": "Qiymətləri marketlər arasında müqayisə et, ən ucuz marketdən məhsulu al!",
+    "subtitle2": "Endirimlərdən yararlan və büdcənə qənaət et.",
+    "startBtn": "Başla",
+    "walletBadge": "YENİ: Rəqəmsal Pulqabı",
+    "walletTitle": "Bonus kartlarını artıq evdə qoymağa son!",
+    "walletDesc": "Bonus kartlarını (Bir bonus, Umico, Bravo, Bazarstore, Araz və s.) tətbiqə əlavə et. Kassada telefonla sadəcə barkodu göstər və bonusları topla.",
+    "walletFeature1": "Barkodu skan et və ya əl ilə nömrəni əlavə et",
+    "walletFeature2": "Kartın şəklini çəkib saxla",
+    "walletFeature3": "Tətbiqi quraşdırın və bonus kartlarınıza oflayn rejimdə daxil olun",
+    "goToWallet": "Pulqabıya get",
+    "demoTitle": "CheapMarket-i Fəaliyyətdə Gör",
+    "demoDescription": "Vebsaytdan necə istifadə edəcəyinizi öyrənmək üçün bu qısa demoyu izləyin!"
+  },
+  "products": {
+    "title": "Məhsullar",
+    "search": "Məhsulları axtar",
+    "searchPlaceholder": "Məhsul axtar...",
+    "searchButton": "Axtar",
+    "filter": "Filter",
+    "lowestToHighest": "En Azından En Çoxa",
+    "highestToLowest": "En Çoxdan En Azına",
+    "discountsOnly": "Yalnız Endirimli",
+    "filterByMarkets": "Marketə görə filterlə",
+    "noMarkets": "Bazar hələ yoxdur",
+    "clearAll": "Hamısını Sil",
+    "selectAll": "Hamısını Seç",
+    "addToFavorite": "Sevimlilərə Əlavə Et",
+    "discount": "Endirim",
+    "noResults": "Məhsul tapılmadı",
+    "retry": "Təkrar Cəhd Et",
+    "error": "Xəta baş verdi",
+    "enterProduct": "Lütfən məhsul adını daxil edin!"
+  },
+  "contact": {
+    "title": "Bizimlə Əlaqə",
+    "name": "Adı",
+    "email": "E-poçt",
+    "message": "Mesaj",
+    "send": "Göndər",
+    "success": "Mesaj uğurla göndərildi"
+  },
+  "findMarket": {
+    "title": "Ən Yaxın Marketi Tap",
+    "search": "Market axtarışı",
+    "noMarkets": "Market tapılmadı"
+  },
+  "journals": {
+    "title": "Jurnallar",
+    "noJournals": "Hələ jurnal yoxdur"
+  },
+  "favorites": {
+    "title": "Sevimlilər",
+    "noFavorites": "Hələ sevimlilər yoxdur"
+  },
+  "nutrition": {
+    "title": "NutriScore Yoxlaması",
+    "analyze": "Şəkli yükləmək üçün klikləyin",
+    "results": "Seçilmiş şəkil:",
+    "description": "Məhsulun inqrediyentlərinin və ya qida etiketinin şəklini yükləyin. Sistem zərərli inqrediyentləri, alergenleri və qida keyfiyyətini analiz edəcək və Nutri-Score (A–E) nəticəsini verəcəkdir.",
+    "willReceive": "Siz aşağıdakı məlumatı alacaqsınız:",
+    "item1": "Zərərli və ya riskli inqrediyentlər",
+    "item2": "Alergenləri",
+    "item3": "Qida ilə bağlı narahatlıqlar və kalori məlumatı",
+    "item4": "Nutri-Score (A–E)",
+    "recommendation": "Ümumi tövsiyyə və məhsul xülasəsi",
+    "scoreA": "Çox Sağlam",
+    "scoreB": "Sağlam",
+    "scoreC": "Orta",
+    "scoreD": "Az Sağlam",
+    "scoreE": "Sağlamsız"
+  },
+  "wallet": {
+    "title": "Mənim Cüzdanım",
+    "balance": "Balans",
+    "addCard": "Kart Əlavə Et",
+    "myCards": "Mənim Kartlarım",
+    "noCards": "Hələ kart yoxdur"
+  },
+  "footer": {
+    "description": "Qiymətləri müqayisə etməyin, endirim jurnallarını nəzərdən keçirməyin və süni intellekt ilə qida qidalanmasını analiz etməyin ən asan yolu.",
+    "allRightsReserved": "Bütün hüquqlar qorunur.",
+    "navigation": "Naviqasiya",
+    "support": "Dəstək",
+    "company": "Şirkət",
+    "contactUs": "Bizimlə Əlaqə",
+    "privacyPolicy": "Məxfilik Siyasəti",
+    "termsOfService": "Xidmət Şərtləri",
+    "about": "Haqqımızda",
+    "blog": "Blok"
+  },
+  "addCard": {
+    "title": "Yeni Kart Əlavə Et",
+    "cardNamePlaceholder": "Kartın Adı (məs. Umico)",
+    "barcodePlaceholder": "Barkod Nömrəsi",
+    "photoPlaceholder": "Kartın Şəklini Yüklə (Əcəbayi)",
+    "selected": "Seçildi:",
+    "save": "CÜZDANA YADDA SAXLA",
+    "fillWarning": "Lütfən adı və barkodu doldurun."
+  },  "editCard": {
+    "title": "Kartı Redaktə Et",
+    "cardNamePlaceholder": "Kartın Adı (məs. Umico)",
+    "barcodePlaceholder": "Barkod Nömrəsi",
+    "photoPlaceholder": "Kartın Şəklini Yüklə (İcəbayi)",
+    "selected": "Seçildi:",
+    "existingPhoto": "Mövcud şəkil saxlanacaq (əvəz etmək üçün toxunun)",
+    "save": "DƏYİŞİKLİKLƏRİ YADDA SAXLA",
+    "fillWarning": "Lütfən adı və barkodu doldurun."
+  },  "cardDetails": {
+    "deleteTitle": "Kartı silmək?",
+    "deleteMessage": "Bu kartı cüzdanınızdan silmək istədiyinizə əminsiniz?",
+    "deleteConfirm": "Bəli, sil",
+    "deleteCancel": "Xeyr, qalsın",
+    "tapToEnlarge": "Böyütmək və döndərmək üçün toxunun"
+  },
+  "common": {
+    "loading": "Yüklənir...",
+    "error": "Xəta",
+    "success": "Uğur",
+    "cancel": "Ləğv Et",
+    "save": "Yadda Saxla",
+    "delete": "Sil",
+    "edit": "Redaktə Et",
+    "back": "Geri",
+    "close": "Bağla"
+  }
+}

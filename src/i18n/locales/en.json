@@ -1,0 +1,142 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "contact": "Contact",
+    "findMarket": "Find Market",
+    "journals": "Journals",
+    "favorites": "Favorites",
+    "nutrition": "Nutrition",
+    "wallet": "Wallet",
+    "language": "Language"
+  },
+  "home": {
+    "title": "Welcome to CheapMarket!",
+    "subtitle": "Compare prices across markets and buy from the cheapest one!",
+    "subtitle2": "Take advantage of discounts and save your budget.",
+    "startBtn": "Start",
+    "walletBadge": "NEW: Digital Wallet",
+    "walletTitle": "No more carrying bonus cards!",
+    "walletDesc": "Add your bonus cards (Bir Bonus, Umico, Bravo, Bazarstore, Araz, etc.) to the app. Simply show the barcode at checkout and collect bonuses.",
+    "walletFeature1": "Scan barcode or add number manually",
+    "walletFeature2": "Take and save a photo of your card",
+    "walletFeature3": "Install the app and access your bonus cards offline",
+    "goToWallet": "Go to Wallet",
+    "demoTitle": "See CheapMarket in Action",
+    "demoDescription": "Watch this quick demo to learn how to use website!"
+  },
+  "products": {
+    "title": "Products",
+    "search": "Search products",
+    "searchPlaceholder": "Search product...",
+    "searchButton": "Search",
+    "filter": "Filter",
+    "lowestToHighest": "Lowest to Highest",
+    "highestToLowest": "Highest to Lowest",
+    "discountsOnly": "Discounts Only",
+    "filterByMarkets": "Filter by Markets",
+    "noMarkets": "No markets yet",
+    "clearAll": "Clear All",
+    "selectAll": "Select All",
+    "addToFavorite": "Add to Favorite",
+    "discount": "Discount",
+    "noResults": "No products found",
+    "retry": "Retry",
+    "error": "Error occurred",
+    "enterProduct": "Please enter a product!"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "success": "Message sent successfully"
+  },
+  "findMarket": {
+    "title": "Find Closest Market",
+    "search": "Search for markets",
+    "noMarkets": "No markets found"
+  },
+  "journals": {
+    "title": "Journals",
+    "noJournals": "No journals yet"
+  },
+  "favorites": {
+    "title": "Favorites",
+    "noFavorites": "No favorites yet"
+  },
+  "nutrition": {
+    "title": "NutriScore Check",
+    "analyze": "Click to upload an image",
+    "results": "Selected image:",
+    "description": "Upload a photo of a product's ingredients or nutrition label. The system will analyze harmful ingredients, allergens, and nutritional quality, and provide a Nutri-Score (A–E) result.",
+    "willReceive": "You will receive the following information:",
+    "item1": "Harmful or risky ingredients",
+    "item2": "Allergens",
+    "item3": "Nutritional concerns and calorie info",
+    "item4": "Nutri-Score (A–E)",
+    "recommendation": "General recommendation and product summary",
+    "scoreA": "Very Healthy",
+    "scoreB": "Healthy",
+    "scoreC": "Average",
+    "scoreD": "Less Healthy",
+    "scoreE": "Unhealthy"
+  },
+  "wallet": {
+    "title": "My Wallet",
+    "balance": "Balance",
+    "addCard": "Add Card",
+    "myCards": "My Cards",
+    "noCards": "No cards yet"
+  },
+  "footer": {
+    "description": "The easiest way to compare prices, revise discount journals, and analyze food nutrition with AI.",
+    "allRightsReserved": "All rights reserved.",
+    "navigation": "Navigation",
+    "support": "Support",
+    "company": "Company",
+    "contactUs": "Contact Us",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "about": "About",
+    "blog": "Blog"
+  },
+  "addCard": {
+    "title": "Add New Card",
+    "cardNamePlaceholder": "Card Name (e.g. Umico)",
+    "barcodePlaceholder": "Barcode Number",
+    "photoPlaceholder": "Upload Card Photo (Optional)",
+    "selected": "Selected:",
+    "save": "SAVE TO WALLET",
+    "fillWarning": "Please fill in the name and barcode."
+  },
+  "editCard": {
+    "title": "Edit Card",
+    "cardNamePlaceholder": "Card Name (e.g. Umico)",
+    "barcodePlaceholder": "Barcode Number",
+    "photoPlaceholder": "Upload Card Photo (Optional)",
+    "selected": "Selected:",
+    "existingPhoto": "Existing photo will be kept (tap to replace)",
+    "save": "SAVE CHANGES",
+    "fillWarning": "Please fill in the name and barcode."
+  },
+  "cardDetails": {
+    "deleteTitle": "Delete Card?",
+    "deleteMessage": "Are you sure you want to delete this card from your wallet?",
+    "deleteConfirm": "Yes, delete",
+    "deleteCancel": "No, keep it",
+    "tapToEnlarge": "Tap to enlarge & rotate"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "close": "Close"
+  }
+}

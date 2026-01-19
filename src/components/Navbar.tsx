@@ -2,12 +2,15 @@ import { useEffect, useRef, useState } from 'react'
 // import marketLogo from '../assets/images/markets-old.png'
 import mylogo from '../assets/images/logo.png'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from './LanguageSwitcher'
 
 
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
     const menuRef = useRef<HTMLDivElement | null>(null);
     const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+    const { t } = useTranslation()
 
 
     const closeMenu = () => {
@@ -51,20 +54,21 @@ function Navbar() {
             <div className='hidden xl:flex items-center gap-12 font-semibold
         text-base'>
                 <Link to={'/'} className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all'>
-                    Home
+                    {t('nav.home')}
                 </Link>
                 <Link to={'/products'} className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all'>
-                    Products
+                    {t('nav.products')}
                 </Link>
                 <Link to={'/journals'} className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all'>
-                    Journals
+                    {t('nav.journals')}
                 </Link>
                 <Link to={'/contact'} className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all'>
-                    Contact
+                    {t('nav.contact')}
                 </Link>
                 <Link to={'/find-closest-market'} className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all'>
-                    Find Closest Market
+                    {t('nav.findMarket')}
                 </Link>
+                <LanguageSwitcher />
             </div>
 
 
@@ -85,20 +89,23 @@ function Navbar() {
                     style={{ transition: 'transform 0.3s ease, opacity 0.3s ease' }}
                 >
                     <Link to={'/'} onClick={closeMenu} className=' w-full text-center p-4 hover:bg-sky-400 hover:text-white transition-all cursor-pointer'>
-                        Home
+                        {t('nav.home')}
                     </Link>
                     <Link to={'/products'} onClick={closeMenu} className='w-full text-center p-4 hover:bg-sky-400 hover:text-white transition-all cursor-pointer'>
-                        Products
+                        {t('nav.products')}
                     </Link>
                     <Link to={'/journals'} onClick={closeMenu} className='w-full text-center p-4 hover:bg-sky-400 hover:text-white transition-all cursor-pointer'>
-                        Journals
+                        {t('nav.journals')}
                     </Link>
                     <Link to={'/contact'} onClick={closeMenu} className=' w-full text-center p-4 hover:bg-sky-400 hover:text-white transition-all cursor-pointer'>
-                        Contact
+                        {t('nav.contact')}
                     </Link>
                     <Link to={'/find-closest-market'} onClick={closeMenu} className=' w-full text-center p-4 hover:bg-sky-400 hover:text-white transition-all cursor-pointer'>
-                        Find Closest Market
+                        {t('nav.findMarket')}
                     </Link>
+                    <div className='w-full p-4 flex justify-center'>
+                        <LanguageSwitcher />
+                    </div>
                 </div>
             }
 

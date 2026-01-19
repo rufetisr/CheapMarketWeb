@@ -1,8 +1,12 @@
 
+import { useTranslation } from "react-i18next";
+
 const DemoVideo = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="my-12 flex flex-col items-center">
-      <h2 className="text-2xl mb-4 text-gray-800">See CheapMarket in Action</h2>
+      <h2 className="text-2xl mb-4 text-gray-800">{t('home.demoTitle')}</h2>
       <div className="w-full max-w-4xl rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-white">
         <video
           className="w-full h-auto max-h-[600px]"
@@ -17,7 +21,7 @@ const DemoVideo = () => {
         </video>
       </div>
       <p className="text-gray-500 text-sm mt-3">
-        Watch this quick demo to learn how to use website!
+        {t('home.demoDescription')}
       </p>
     </div>
   );

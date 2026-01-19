@@ -3,11 +3,13 @@ import { useState } from "react";
 // import logo from '../assets/images/markets-old.png'
 import logo from '../assets/images/logo.png'
 import AdSense from "./AdSense";
+import { useTranslation } from 'react-i18next'
 
 
 const Footer = () => {
     const [showPrivacy, setShowPrivacy] = useState(false);
     const [showTerms, setShowTerms] = useState(false);
+    const { t } = useTranslation()
 
     // Close modal when clicking outside modal content
     const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -30,60 +32,60 @@ const Footer = () => {
                             <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-purple-500">CheapMarket</h2>
                         </div>
                         <p className="text-gray-600 text-sm">
-                            The easiest way to compare prices, revise discount journals, and analyze food nutrition with AI.
+                            {t('footer.description')}
                         </p>
                         <p className="text-gray-400 text-xs mt-4">
-                            © 2025 - {new Date().getFullYear()} CheapMarket. All rights reserved.
+                            © 2025 - {new Date().getFullYear()} CheapMarket. {t('footer.allRightsReserved')}
                         </p>
                     </div>
                     {/* Navigation */}
                     <div>
-                        <h3 className="text-md font-semibold text-gray-800 mb-3">Navigation</h3>
+                        <h3 className="text-md font-semibold text-gray-800 mb-3">{t('footer.navigation')}</h3>
                         <ul className="space-y-2">
                             <li>
                                 <Link to="/" className="text-gray-600 hover:text-blue-600 transition">
-                                    Home
+                                    {t('nav.home')}
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/products" className="text-gray-600 hover:text-blue-600 transition">
-                                    Products
+                                    {t('nav.products')}
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/journals" className="text-gray-600 hover:text-blue-600 transition">
-                                    Journals
+                                    {t('nav.journals')}
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/nutrition-analyzer" className="text-gray-600 hover:text-blue-600 transition">
-                                    Nutrition Analyzer
+                                    {t('nav.nutrition')}
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/my-wallet" className="text-gray-600 hover:text-blue-600 transition">
-                                    My Bonus Cards
+                                    {t('nav.wallet')}
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/find-closest-market" className="text-gray-600 hover:text-blue-600 transition">
-                                    Closest Market
+                                    {t('nav.findMarket')}
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/favorites" className="text-gray-600 hover:text-blue-600 transition">
-                                    Favorites
+                                    {t('nav.favorites')}
                                 </Link>
                             </li>
                         </ul>
                     </div>
                     {/* Legal/Contact */}
                     <div>
-                        <h3 className="text-md font-semibold text-gray-800 mb-3">Support & Legal</h3>
+                        <h3 className="text-md font-semibold text-gray-800 mb-3">{t('footer.support')}</h3>
                         <ul className="space-y-2">
                             <li>
                                 <Link to="/contact" className="text-gray-600 hover:text-blue-600 transition">
-                                    Contact
+                                    {t('footer.contactUs')}
                                 </Link>
                             </li>
                             <li>
@@ -92,7 +94,7 @@ const Footer = () => {
                                     className="text-gray-600 hover:text-blue-600 transition underline cursor-pointer"
                                     type="button"
                                 >
-                                    Privacy Policy
+                                    {t('footer.privacyPolicy')}
                                 </button>
                             </li>
                             <li>
@@ -101,7 +103,7 @@ const Footer = () => {
                                     className="text-gray-600 hover:text-blue-600 transition underline cursor-pointer"
                                     type="button"
                                 >
-                                    Terms of Use
+                                    {t('footer.termsOfService')}
                                 </button>
                             </li>
                         </ul>

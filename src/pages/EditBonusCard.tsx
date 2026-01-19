@@ -7,10 +7,12 @@ import { BiBarcodeReader } from 'react-icons/bi';
 import { formatBarcode, normalizeBarcode } from '../utils/formatBarcode';
 import { useParams } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
+import { useTranslation } from 'react-i18next'
 
 const EditBonusCard = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation()
 
   const card = useLiveQuery(
     () => (id ? db.bonusCards.get(Number(id)) : undefined),
@@ -35,7 +37,7 @@ const EditBonusCard = () => {
     if (!card || !card.id) return;
 
     if (!name || !barcode) {
-      toast.warn('Please fill in the name and barcode. ');
+      toast.warn(t('editCard.fillWarning'));
       return;
     }
 
@@ -56,7 +58,7 @@ const EditBonusCard = () => {
   if (!card) {
     return (
       <div className="min-h-screen flex items-center justify-center text-gray-500">
-        Loading card...
+        {t('common.loading')}
       </div>
     );
   }
@@ -64,13 +66,13 @@ const EditBonusCard = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-6 flex flex-col items-center">
       <div className="w-full max-w-md space-y-6">
-        <h1 className="text-2xl font-bold text-blue-600">Edit Card</h1>
+        <h1 className="text-2xl font-bold text-blue-600">{t('editCard.title')}</h1>
 
         {/* Manual Input */}
         <div className="space-y-4">
           <input
             className="w-full p-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 outline-none"
-            placeholder="Card Name (e.g. Umico)"
+            placeholder={t('editCard.cardNamePlaceholder')}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -78,7 +80,7 @@ const EditBonusCard = () => {
           <div className="flex gap-2">
             <input
               className="flex-1 p-4 rounded-xl border border-gray-200 outline-none"
-              placeholder="Barcode Number"
+              placeholder={t('editCard.barcodePlaceholder')}
               type="text"
               inputMode="numeric"
               value={formatBarcode(barcode)}
@@ -115,10 +117,10 @@ const EditBonusCard = () => {
           />
           <p className="text-gray-500">
             {imageFile
-              ? `Selected: ${imageFile.name}`
+              ? `${t('editCard.selected')} ${imageFile.name}`
               : card.frontImage
-              ? 'Existing photo will be kept (tap to replace)'
-              : 'Upload Card Photo (Optional)'}
+              ? t('editCard.existingPhoto')
+              : t('editCard.photoPlaceholder')}
           </p>
         </div>
 
@@ -126,7 +128,7 @@ const EditBonusCard = () => {
           onClick={handleSave}
           className="cursor-pointer w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition"
         >
-          SAVE CHANGES
+          {t('editCard.save')}
         </button>
       </div>
       <ToastContainer

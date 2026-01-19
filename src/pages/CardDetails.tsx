@@ -6,12 +6,14 @@ import { useState } from 'react';
 import { FiZoomIn, FiZoomOut, FiTrash2, FiArrowLeft, FiMaximize2, FiX, FiCreditCard, FiEdit2 } from 'react-icons/fi';
 import { formatBarcode } from '../utils/formatBarcode';
 import ConfirmModal from '../components/ConfirmModal';
+import { useTranslation } from 'react-i18next'
 
 export const CardDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [barcodeWidth, setBarcodeWidth] = useState(2);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const { t } = useTranslation()
 
   // Modal State
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -33,10 +35,10 @@ export const CardDetails = () => {
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
         onConfirm={handleDelete}
-        title="Kartı silmək?"
-        message={`"${card.name}" kartını pulqabınızdan silmək istədiyinizə əminsiniz?`}
-        confirmText="Bəli, sil"
-        cancelText="Xeyr, qalsın"
+        title={t('cardDetails.deleteTitle')}
+        message={t('cardDetails.deleteMessage')}
+        confirmText={t('cardDetails.deleteConfirm')}
+        cancelText={t('cardDetails.deleteCancel')}
       />
 
       {/* 1. FULL SCREEN VERTICAL OVERLAY */}
@@ -140,7 +142,7 @@ export const CardDetails = () => {
               displayValue={false}
               margin={0}
             />
-            <span className="text-[10px] text-gray-400 mt-4 font-bold tracking-tighter uppercase">Tap to enlarge & rotate</span>
+            <span className="text-[10px] text-gray-400 mt-4 font-bold tracking-tighter uppercase">{t('cardDetails.tapToEnlarge')}</span>
           </div>
 
           {/* Size Controls */}

@@ -6,6 +6,7 @@ import {
   Marker,
   useLoadScript,
 } from "@react-google-maps/api";
+import { useTranslation } from 'react-i18next'
 
 
 
@@ -13,6 +14,7 @@ export default function ClosestMarket() {
   const [userLoc, setUserLoc] = useState<{ lat: number; lon: number } | null>(
     null
   );
+  const { t } = useTranslation()
 
   // const [closest, setClosest] = useState<google.maps.LatLng | null>(null);
 
@@ -37,8 +39,8 @@ export default function ClosestMarket() {
 
 
 
-  if (!isLoaded) return <p>📍 Loading Google Map...</p>;
-  if (!userLoc) return <p>📍 Getting your location...</p>;
+  if (!isLoaded) return <p>{t('common.loading')}</p>;
+  if (!userLoc) return <p>📍 {t('common.loading')}</p>;
 
   const kmlUrl =
     "https://www.google.com/maps/d/u/0/kml?mid=1yfSHoGucilui9a048gcG6Bv30jE_qzI";
@@ -47,7 +49,7 @@ export default function ClosestMarket() {
   return (
     <div style={{ height: "100vh", width: "100%" }}>
       <h1 className="text-xl font-bold mb-3 text-center">
-        🗺️Find Closest Market
+        🗺️ {t('findMarket.title')}
       </h1>
 
       <GoogleMap

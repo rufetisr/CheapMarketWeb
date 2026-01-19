@@ -5,8 +5,10 @@ import { FiArrowRight, FiCreditCard } from 'react-icons/fi'
 import DemoVideo from '../components/DemoVideo'
 import { motion } from 'framer-motion'
 import InstallPWAButton from "../components/InstallPWA";
+import { useTranslation } from 'react-i18next'
 
 const Home = () => {
+    const { t } = useTranslation()
 
     // 2. Define a simple reveal variant
     const fadeIn = {
@@ -27,11 +29,11 @@ const Home = () => {
                     transition={{ duration: 0.6 }}
                     variants={fadeIn}>
                     <h1 className="text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-purple-500 mb-4">
-                        Ucuz Marketə xoş gəlmisiniz!
+                        {t('home.title')}
                     </h1>
                     <p className="lg:text-2xl text-gray-700 mb-6">
-                        Qiymətləri marketlər arasında müqayisə et, ən ucuz marketdən məhsulu al!<br />
-                        Endirimlərdən yararlan və büdcənə qənaət et.
+                        {t('home.subtitle')}<br />
+                        {t('home.subtitle2')}
                     </p>
                     <Link to="/products">
                         <button
@@ -39,7 +41,7 @@ const Home = () => {
                             className="cursor-pointer group relative flex items-center gap-1.5 overflow-hidden rounded-2xl bg-gradient-to-r from-green-500 to-green-600 px-10 py-4 text-xl font-semibold text-white shadow-lg transition-all hover:from-green-600 hover:to-green-700 hover:shadow-green-200 active:scale-95"
                             aria-label="Başla - Məhsullara keçid"
                         >
-                            <span>Başla</span>
+                            <span>{t('home.startBtn')}</span>
                             <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-3" />
                         </button>
                     </Link>
@@ -81,27 +83,26 @@ const Home = () => {
                 <div className="flex-1 space-y-6">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-50 text-purple-600 rounded-full font-semibold text-sm">
                         <FiCreditCard />
-                        YENİ: Rəqəmsal Pulqabı
+                        {t('home.walletBadge')}
                     </div>
                     <h2 className="text-3xl font-bold text-gray-800">
-                        Bonus kartlarını artıq evdə qoymağa son!
+                        {t('home.walletTitle')}
                     </h2>
                     <p className="text-gray-600 text-lg">
-                        Bonus kartlarını (Bir bonus, Umico, Bravo, Bazarstore, Araz və s.) tətbiqə əlavə et.
-                        Kassada telefonla sadəcə barkodu göstər və bonusları topla.
+                        {t('home.walletDesc')}
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700">
                         <div className="flex items-center gap-2">
                             <span className="bg-green-100 text-green-600 p-1 rounded-full text-xs">✓</span>
-                            Barkodu skan et və ya əl ilə nömrəni əlavə et
+                            {t('home.walletFeature1')}
                         </div>
                         <div className="flex items-center gap-2">
                             <span className="bg-green-100 text-green-600 p-1 rounded-full text-xs">✓</span>
-                            Kartın şəklini çəkib saxla
+                            {t('home.walletFeature2')}
                         </div>
                         <div className="flex items-center gap-2">
                             <span className="bg-green-100 text-green-600 p-1 rounded-full text-xs">✓</span>
-                            Tətbiqi quraşdırın və bonus kartlarınıza oflayn rejimdə daxil olun
+                            {t('home.walletFeature3')}
                         </div>
                         {/* <div className="flex items-center gap-2">
                             <span className="bg-green-100 text-green-600 p-1 rounded-full text-xs">✓</span>
@@ -112,7 +113,7 @@ const Home = () => {
                     <div className="flex gap-4">
                         <Link to="/my-wallet" className="flex-1 sm:flex-none">
                             <button className="cursor-pointer w-full sm:w-auto px-8 py-3 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-purple-200 hover:bg-blue-700 transition active:scale-95">
-                                Pulqabıya get
+                                {t('home.goToWallet')}
                             </button>
                         </Link>
                         {/* <Link to="/add-card" className="flex-1 sm:flex-none">
